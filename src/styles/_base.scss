@@ -1,9 +1,12 @@
 @mixin bgColors($color) {
     @if $color == 'green' {
-        background-color: #007338
+        background-color: #00ac70
     }
     @if $color == 'lightgrey' {
         background-color: #f4f4f4
+    }
+    @if $color == 'white' {
+        background-color: #ffffff
     }
 }
 
