@@ -1,1 +1,16 @@
+@import "./base";
 
+.main {
+  @include bgColors("green");
+  width: 100vw;
+  height: 100vh;
+}
+
+.container {
+  @include bgColors("lightgrey");
+  width: 97vw;
+  height: 94vh;
+  position: absolute;
+  top: 3vh;
+  left: 1.5vw;
+}

@@ -1,11 +1,14 @@
 @mixin bgColors($color) {
-    @if $color == 'black' {
-        background-color: #000000
+    @if $color == 'green' {
+        background-color: #007338
+    }
+    @if $color == 'lightgrey' {
+        background-color: #f4f4f4
     }
 }
 
 @mixin textColors($color) {
-    @if $color == 'white' {
-        color: #ffffff
+    @if $color == 'black' {
+        color: #000000
     }
 }
