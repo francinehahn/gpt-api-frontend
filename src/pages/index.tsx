@@ -5,13 +5,42 @@ import { useState } from 'react'
 import logo from "../assets/chatAI-logo.png"
 import { AiOutlineSend } from "react-icons/ai"
 import styles from "../styles/Home.module.scss"
+import { Animation } from '@/components/animation/Animation'
 
 
 export default function Home() {
   const [radioForm, setRadioForm] = useState("")
   const [textValue, setTextValue] = useState("")
 
-  const handleChange = (e: any) => {
+  const [title, setTitle] = useState("")
+  const [description, setDescription] = useState("")
+  const [showAnimation, setShowAnimation] = useState(false)
+
+  const handleRadioInputChange = (e: any) => {
+    setRadioForm(e.target.value)
+    
+    if (e.target.value === "writer") {
+      setTitle("Assistente de escrita")
+      setDescription("Informe o que você quer que o chatAI escreva para você")
+    } else if (e.target.value === "recipe") {
+      setTitle("Criador de receitas")
+      setDescription("Informe os ingredientes que você tem em casa e o chatAI irá criar uma receita para você")
+    } else if (e.target.value === "summary") {
+      setTitle("Criador de resumos")
+      setDescription("Informe o seu texto e o chatAI fará um resumo para você")
+    } else if (e.target.value === "translator") {
+      setTitle("Tradutor")
+      setDescription("Informe as línguas de origem e de destino e o seu texto e o chatAI fará a tradução para você")
+    }
+
+    setShowAnimation(true)
+
+    setTimeout(() => {
+      setShowAnimation(false)
+    }, 4000)
+  }
+
+  const handleTextChange = (e: any) => {
     setTextValue(e.target.value)
     adjustTextAreaHeight()
   }
@@ -41,19 +70,19 @@ export default function Home() {
             <h2>Selecione uma das opções abaixo:</h2>
             <form>
               <div>
-                <input type="radio" name="option" id="writer" value="writer" onChange={e => setRadioForm(e.target.value)}/>
+                <input type="radio" name="option" id="writer" value="writer" onChange={handleRadioInputChange}/>
                 <label htmlFor="writer">Escritor</label>
               </div>
               <div>
-                <input type="radio" name="option" id="recipe" value="recipe" onChange={e => setRadioForm(e.target.value)}/>
+                <input type="radio" name="option" id="recipe" value="recipe" onChange={handleRadioInputChange}/>
                 <label htmlFor="recipe">Receitas</label>
               </div>
               <div>
-                <input type="radio" name="option" id="summary" value="summary" onChange={e => setRadioForm(e.target.value)}/>
+                <input type="radio" name="option" id="summary" value="summary" onChange={handleRadioInputChange}/>
                 <label htmlFor="summary">Resumos</label>
               </div>
               <div>
-                <input type="radio" name="option" id="translator" value="translator" onChange={e => setRadioForm(e.target.value)}/>
+                <input type="radio" name="option" id="translator" value="translator" onChange={handleRadioInputChange}/>
                 <label htmlFor="translator">Tradutor</label>
               </div>
             </form>
@@ -61,8 +90,9 @@ export default function Home() {
 
           <section>
             {!radioForm && <Image src={logo} alt="Logo do chatAI" priority/>}
+            {showAnimation && <Animation title={title} description={description}/>}
 
-            {radioForm && (
+            {radioForm && !showAnimation && (
               <>
               <div className={styles.chatAnswer}>
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in itaque, recusandae nesciunt porro esse cum quaerat pariatur est ut libero id excepturi totam mollitia ab nisi laudantium error necessitatibus!</p>
@@ -91,7 +121,7 @@ export default function Home() {
                     rows={1}
                     placeholder="Digite aqui" 
                     value={textValue} 
-                    onChange={e => handleChange(e)}
+                    onChange={e => handleTextChange(e)}
                   />
                   <button disabled={textValue.trim() === ""}>
                     <AiOutlineSend/>

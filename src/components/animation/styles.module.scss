@@ -1,0 +1,24 @@
+@import "../../styles/base";
+
+.animation {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    @include bgColors("lightgrey");
+
+    h2 {
+        font-size: 2rem;
+    }
+    p {
+        font-size: 1.2rem;
+    }
+    svg {
+        height: 3rem;
+        width: 3rem;
+        @include textColors("green");
+    }
+}
