@@ -15,6 +15,7 @@
   left: 1.5vw;
   display: flex;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.249);
+  overflow: hidden;
 
   aside {
     @include bgColors("white");
@@ -41,14 +42,86 @@
 
   section {
     width: 80%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    height: 100%;
 
     img {
       width: 10rem;
       height: 5rem;
+      display: block;
+      margin: 40vh auto;
     }
   }
+}
+
+.chatAnswer {
+  height: 95%;
+  padding: 2rem 15rem 10rem 15rem;
+  overflow-y: auto;
+}
+
+.chatInput {
+  background-color: transparent;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  width: 80%;
+  height: 13rem;
+  padding: 1rem 0 3rem 0;
+  
+  form {
+    display: flex;
+    @include bgColors("white");
+    width: 70%;
+    min-height: 3.2rem;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.121);
+    border-radius: .7rem;
+    border: 1px solid rgb(201, 201, 201);
+    
+    textarea:focus {
+      outline: none;
+    }
+
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      border-radius: .7rem;
+      width: 10%;
+      @include bgColors("white");
+      @include textColors("green");
+      cursor: pointer;
+
+      svg {
+        height: 1.5rem;
+        width: 1.5rem;
+      }
+    }
+
+    button:disabled {
+      @include textColors("lightgrey");
+      @include bgColors("white");
+      cursor: context-menu;
+    }
+  }
+}
+
+.resizable-textarea {
+  resize: none;
+  overflow-y: auto;
+  height: 3.2rem;
+  max-height: 13rem;
+  width: 100%;
+
+  border: none;
+  border-radius: .7rem;
+
+  @include bgColors("white");
+  font-size: 1rem;
+  padding: .7rem;
 }

@@ -3,21 +3,32 @@ import Image from 'next/image'
 import { useState } from 'react'
 
 import logo from "../assets/chatAI-logo.png"
+import { AiOutlineSend } from "react-icons/ai"
 import styles from "../styles/Home.module.scss"
 
 
 export default function Home() {
   const [radioForm, setRadioForm] = useState("")
+  const [textValue, setTextValue] = useState("")
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault()
-    console.log(radioForm)
+  const handleChange = (e: any) => {
+    setTextValue(e.target.value)
+    adjustTextAreaHeight()
+  }
+
+  const adjustTextAreaHeight = () => {
+    const textarea = document.getElementById("textArea")
+    if (textarea) {
+      textarea.style.height = "auto"
+      const newHeight = textarea.scrollHeight
+      textarea.style.height = newHeight + "px"
+    }
   }
 
   return (
     <>
       <Head>
-        <title>Chat</title>
+        <title>ChatAI</title>
         <meta name="description" content="Chat" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.png" />
@@ -28,7 +39,7 @@ export default function Home() {
 
           <aside>
             <h2>Selecione uma das opções abaixo:</h2>
-            <form onSubmit={handleSubmit}>
+            <form>
               <div>
                 <input type="radio" name="option" id="writer" value="writer" onChange={e => setRadioForm(e.target.value)}/>
                 <label htmlFor="writer">Escritor</label>
@@ -45,17 +56,52 @@ export default function Home() {
                 <input type="radio" name="option" id="translator" value="translator" onChange={e => setRadioForm(e.target.value)}/>
                 <label htmlFor="translator">Tradutor</label>
               </div>
-
-              <button>Enviar</button>
             </form>
           </aside>
 
           <section>
-            {!radioForm && <Image src={logo} alt="Logo do chatAI"/>}
+            {!radioForm && <Image src={logo} alt="Logo do chatAI" priority/>}
 
-            {radioForm && <p>Chat</p>}
+            {radioForm && (
+              <>
+              <div className={styles.chatAnswer}>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in itaque, recusandae nesciunt porro esse cum quaerat pariatur est ut libero id excepturi totam mollitia ab nisi laudantium error necessitatibus!</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in itaque, recusandae nesciunt porro esse cum quaerat pariatur est ut libero id excepturi totam mollitia ab nisi laudantium error necessitatibus!</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in itaque, recusandae nesciunt porro esse cum quaerat pariatur est ut libero id excepturi totam mollitia ab nisi laudantium error necessitatibus!</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in itaque, recusandae nesciunt porro esse cum quaerat pariatur est ut libero id excepturi totam mollitia ab nisi laudantium error necessitatibus!</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in itaque, recusandae nesciunt porro esse cum quaerat pariatur est ut libero id excepturi totam mollitia ab nisi laudantium error necessitatibus!</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in itaque, recusandae nesciunt porro esse cum quaerat pariatur est ut libero id excepturi totam mollitia ab nisi laudantium error necessitatibus!</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in itaque, recusandae nesciunt porro esse cum quaerat pariatur est ut libero id excepturi totam mollitia ab nisi laudantium error necessitatibus!</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in itaque, recusandae nesciunt porro esse cum quaerat pariatur est ut libero id excepturi totam mollitia ab nisi laudantium error necessitatibus!</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in itaque, recusandae nesciunt porro esse cum quaerat pariatur est ut libero id excepturi totam mollitia ab nisi laudantium error necessitatibus!</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in itaque, recusandae nesciunt porro esse cum quaerat pariatur est ut libero id excepturi totam mollitia ab nisi laudantium error necessitatibus!</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in itaque, recusandae nesciunt porro esse cum quaerat pariatur est ut libero id excepturi totam mollitia ab nisi laudantium error necessitatibus!</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in itaque, recusandae nesciunt porro esse cum quaerat pariatur est ut libero id excepturi totam mollitia ab nisi laudantium error necessitatibus!</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in itaque, recusandae nesciunt porro esse cum quaerat pariatur est ut libero id excepturi totam mollitia ab nisi laudantium error necessitatibus!</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in itaque, recusandae nesciunt porro esse cum quaerat pariatur est ut libero id excepturi totam mollitia ab nisi laudantium error necessitatibus!</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in itaque, recusandae nesciunt porro esse cum quaerat pariatur est ut libero id excepturi totam mollitia ab nisi laudantium error necessitatibus!</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in itaque, recusandae nesciunt porro esse cum quaerat pariatur est ut libero id excepturi totam mollitia ab nisi laudantium error necessitatibus!</p>
+              </div>
+
+              <div className={styles.chatInput}>
+                <form>
+                  <textarea 
+                    id="textArea"
+                    className={styles["resizable-textarea"]}
+                    rows={1}
+                    placeholder="Digite aqui" 
+                    value={textValue} 
+                    onChange={e => handleChange(e)}
+                  />
+                  <button disabled={textValue.trim() === ""}>
+                    <AiOutlineSend/>
+                  </button>
+                </form>
+              </div>
+              </>
+            )}
           </section>
-
+        
         </div>
       </main>
     </>

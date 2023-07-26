@@ -14,4 +14,10 @@
     @if $color == 'black' {
         color: #000000
     }
+    @if $color == 'lightgrey' {
+        color: #bbbbbb
+    }
+    @if $color == 'green' {
+        color: #00ac70
+    }
 }
