@@ -58,6 +58,9 @@
   padding: 2rem 15rem 10rem 15rem;
   overflow-y: auto;
 }
+.chatAnswer::-webkit-scrollbar {
+  width: .75rem;
+}
 
 .chatInput {
   background-color: transparent;
@@ -124,4 +127,7 @@
   @include bgColors("white");
   font-size: 1rem;
   padding: .7rem;
+}
+.resizable-textarea::-webkit-scrollbar {
+  width: .5rem;
 }
