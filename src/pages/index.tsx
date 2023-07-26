@@ -69,22 +69,30 @@ export default function Home() {
           <aside>
             <h2>Selecione uma das opções abaixo:</h2>
             <form>
-              <div>
+              <span>
                 <input type="radio" name="option" id="writer" value="writer" onChange={handleRadioInputChange}/>
                 <label htmlFor="writer">Escritor</label>
-              </div>
-              <div>
+              </span>
+              <span>
                 <input type="radio" name="option" id="recipe" value="recipe" onChange={handleRadioInputChange}/>
                 <label htmlFor="recipe">Receitas</label>
-              </div>
-              <div>
+              </span>
+              <span>
                 <input type="radio" name="option" id="summary" value="summary" onChange={handleRadioInputChange}/>
                 <label htmlFor="summary">Resumos</label>
-              </div>
-              <div>
+              </span>
+              <span>
                 <input type="radio" name="option" id="translator" value="translator" onChange={handleRadioInputChange}/>
                 <label htmlFor="translator">Tradutor</label>
-              </div>
+              </span>
+              {
+                radioForm === "translator" && (
+                  <div className={styles.languages}>
+                    <input type="text" placeholder="Língua de origem"/>
+                    <input type="text" placeholder="Língua de destino"/>
+                  </div>
+                )
+              }
             </form>
           </aside>
 

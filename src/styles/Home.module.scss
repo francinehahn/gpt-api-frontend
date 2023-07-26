@@ -32,11 +32,27 @@
       flex-direction: column;
       gap: .3rem;
 
-      div {
+      span {
         display: flex;
         align-items: center;
         gap: .4rem;
       }
+    }
+  }
+
+  .languages {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .4rem;
+
+    input {
+      width: 80%;
+      font-size: 1rem;
+      padding: .1rem .5rem;
+    }
+    input:focus {
+      outline: none;
     }
   }
 
