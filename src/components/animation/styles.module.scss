@@ -1,0 +1,36 @@
+@import "../../styles/base";
+
+.animation {
+    width: 100%;
+    height: 100%;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    @include bgColors("lightgrey");
+
+    h2 {
+        font-size: 2rem;
+        @media screen and (max-width: 890px) {
+            font-size: 1.5rem;
+        }
+    }
+    p {
+        font-size: 1.2rem;
+        text-align: center;
+        @media screen and (max-width: 890px) {
+            font-size: 1rem;
+        }
+    }
+    svg {
+        height: 3rem;
+        width: 3rem;
+        @include textColors("green");
+        @media screen and (max-width: 890px) {
+            height: 2.2rem;
+            width: 2.2rem;
+        }
+    }
+}

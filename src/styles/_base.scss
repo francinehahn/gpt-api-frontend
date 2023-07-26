@@ -1,0 +1,26 @@
+@mixin bgColors($color) {
+    @if $color == 'green' {
+        background-color: #00ac70
+    }
+    @if $color == 'mediumgrey' {
+        background-color: #d4d4d4
+    }
+    @if $color == 'lightgrey' {
+        background-color: #f4f4f4
+    }
+    @if $color == 'white' {
+        background-color: #ffffff
+    }
+}
+
+@mixin textColors($color) {
+    @if $color == 'black' {
+        color: #000000
+    }
+    @if $color == 'lightgrey' {
+        color: #bbbbbb
+    }
+    @if $color == 'green' {
+        color: #00ac70
+    }
+}
