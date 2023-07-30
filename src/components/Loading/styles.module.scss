@@ -1,0 +1,16 @@
+
+@keyframes rotation {
+    0% {rotate: 0}
+    100% {rotate: 360deg}
+}
+
+.container {
+    height: 1.4rem;
+    width: 1.4rem;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    border-bottom: 4px solid transparent;
+    display: block;
+    margin: 0 auto;    
+    animation: rotation ease-out 1s infinite;
+}

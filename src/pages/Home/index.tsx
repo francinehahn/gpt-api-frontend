@@ -6,7 +6,7 @@ import nookies from "nookies"
 import logo from "../../assets/chatAI-logo.png"
 import { AiOutlineSend } from "react-icons/ai"
 import styles from "./styles.module.scss"
-import { Animation } from '@/components/Animation/Animation'
+import { Animation } from '@/components/animation/Animation'
 import { GetServerSidePropsContext } from 'next'
 
 

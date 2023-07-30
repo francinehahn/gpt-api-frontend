@@ -7,7 +7,7 @@ import axios from "axios"
 import { setCookie, parseCookies } from "nookies"
 import {BsEye, BsEyeSlash} from 'react-icons/bs'
 
-import {Loading} from '../../components/Loading/Loading'
+import {Loading} from '../../components/loading/Loading'
 import { baseUrl } from "../../constants/baseUrl"
 import styles from "./styles.module.scss"
 
@@ -107,7 +107,7 @@ export default function Login() {
                     </div>
 
                     <p>{axiosError}</p>
-                    <button>Entrar</button>
+                    <button>{isLoading? <Loading/> : "Entrar"}</button>
                 </form>
 
                 <span className={styles.span}>
