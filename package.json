@@ -12,9 +12,11 @@
     "@types/node": "20.4.4",
     "@types/react": "18.2.16",
     "@types/react-dom": "18.2.7",
+    "axios": "^1.4.0",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.12",
     "next": "13.4.12",
+    "nookies": "^2.5.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.10.1",
@@ -22,6 +24,8 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/nookies": "^2.0.3",
     "@types/react-icons": "^3.0.0"
   }
 }

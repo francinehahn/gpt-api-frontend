@@ -17,10 +17,19 @@
     @if $color == 'black' {
         color: #000000
     }
+    @if $color == 'darkgrey' {
+        color: rgb(124, 124, 124)
+    }
     @if $color == 'lightgrey' {
         color: #bbbbbb
     }
+    @if $color == 'white' {
+        color: #ffffff
+    }
     @if $color == 'green' {
         color: #00ac70
+    }
+    @if $color == 'red' {
+        color: #ff0d00
     }
 }

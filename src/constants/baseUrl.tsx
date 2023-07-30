@@ -1,0 +1,1 @@
+export const baseUrl = "https://gpt-api-delta.vercel.app/"
