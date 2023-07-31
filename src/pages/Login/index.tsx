@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, FormEvent } from "react"
 import Router from "next/router"
 import Head from "next/head";
 import Link from "next/link"
@@ -15,7 +15,7 @@ import styles from "./styles.module.scss"
 export default function Login() {
     useEffect(() => {
         const cookies = parseCookies()
-        if (cookies) {
+        if (cookies.token) {
             Router.push("/home")
         }
     }, [])
@@ -29,7 +29,7 @@ export default function Login() {
     const [passwordError, setPasswordError] = useState("")
     const [inputType, setInputType] = useState("password")
 
-    const handleLogin = async (e: any) => {
+    const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setIsLoading(true)
         setEmailError("")
@@ -37,11 +37,11 @@ export default function Login() {
         setAxiosError("")
         
         if (email === "") {
-            setEmailError("Informe o seu email.")
+            setEmailError("Informe o seu email")
             setIsLoading(false)
         }
         if (password === "" || password.length < 8) {
-            setPasswordError("A senha deve ter pelo menos 8 caracteres.")
+            setPasswordError("A senha deve ter pelo menos 8 caracteres")
             setIsLoading(false)
         }
         if (email !== "" && password.length >= 8) {
@@ -57,7 +57,7 @@ export default function Login() {
             })
             .catch(error => {
                 setIsLoading(false)
-                setAxiosError("E-mail ou senha incorretos.")
+                setAxiosError("E-mail ou senha incorretos")
             })
         }
     }
@@ -79,6 +79,7 @@ export default function Login() {
                     <div>
                         <label htmlFor="email">E-mail</label>
                         <input 
+                            className={`${emailError && styles.error}`}
                             type={'email'} 
                             placeholder="maria.santos@gmail.com" 
                             name="email" 
@@ -92,6 +93,7 @@ export default function Login() {
                         <label htmlFor="password">Senha</label>
                         <span className={styles.password}>
                             <input 
+                                className={`${passwordError && styles.error}`}
                                 type={inputType} 
                                 placeholder="********" 
                                 name="password" 
@@ -112,7 +114,7 @@ export default function Login() {
 
                 <span className={styles.span}>
                     <p>Não possui uma conta?</p>
-                    <Link href={"/signup"}>Clique aqui.</Link>
+                    <Link href="/signup">Clique aqui.</Link>
                 </span>
             </main>
         </>

@@ -25,4 +25,26 @@ body {
             background-color: transparent;
         }
     }
+
+    button {
+        padding: .5rem 0;
+        font-size: 1rem;
+        border: none;
+        @include textColors("white");
+        @include bgColors("green");
+        &:hover {
+            cursor: pointer;
+            opacity: .8;
+        }
+    }
+
+    input {
+        padding: .4rem .5rem;
+        font-size: 1rem;
+        border: 1px solid #939393;
+        width: 100%;
+        &:focus {
+            outline: none;
+        }
+    }
 }
