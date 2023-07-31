@@ -1,23 +1,19 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, ChangeEvent } from 'react'
 import Router from 'next/router'
 
 import nookies, { destroyCookie } from "nookies"
 import { TbLogout2 } from "react-icons/tb"
 
 import logo from "../../assets/chatAI-logo.png"
-import { AiOutlineSend } from "react-icons/ai"
 import styles from "./styles.module.scss"
 import { Animation } from '@/components/animation/Animation'
 import { GetServerSidePropsContext } from 'next'
-
-
+import { Recipe } from '@/components/recipe/Recipe'
 
 export default function Home() {
     const [radioForm, setRadioForm] = useState("")
-    const [textValue, setTextValue] = useState("")
-
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
     const [showAnimation, setShowAnimation] = useState(false)
@@ -27,7 +23,7 @@ export default function Home() {
         Router.push("/")
     }
 
-    const handleRadioInputChange = (e: any) => {
+    const handleRadioInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         setRadioForm(e.target.value)
         
         if (e.target.value === "writer") {
@@ -51,20 +47,6 @@ export default function Home() {
         }, 4000)
     }
 
-    const handleTextChange = (e: any) => {
-        setTextValue(e.target.value)
-        adjustTextAreaHeight()
-    }
-
-    const adjustTextAreaHeight = () => {
-        const textarea = document.getElementById("textArea")
-        if (textarea) {
-            textarea.style.height = "auto"
-            const newHeight = textarea.scrollHeight
-            textarea.style.height = newHeight + "px"
-        }
-    }
-
     return (
         <>
         <Head>
@@ -78,80 +60,48 @@ export default function Home() {
         <main className={styles.main}>
             <div className={styles.container}>
 
-            <aside>
-                <TbLogout2 onClick={handleLogout}/>
-                <h2>Selecione uma das opções abaixo:</h2>
-                <form>
-                    <span>
-                        <input type="radio" name="option" id="writer" value="writer" onChange={handleRadioInputChange}/>
-                        <label htmlFor="writer">Escritor</label>
-                    </span>
-                    <span>
-                        <input type="radio" name="option" id="recipe" value="recipe" onChange={handleRadioInputChange}/>
-                        <label htmlFor="recipe">Receitas</label>
-                    </span>
-                    <span>
-                        <input type="radio" name="option" id="summary" value="summary" onChange={handleRadioInputChange}/>
-                        <label htmlFor="summary">Resumos</label>
-                    </span>
-                    <span>
-                        <input type="radio" name="option" id="translator" value="translator" onChange={handleRadioInputChange}/>
-                        <label htmlFor="translator">Tradutor</label>
-                    </span>
-                    {
-                        radioForm === "translator" && (
-                        <div className={styles.languages}>
-                            <input type="text" placeholder="Língua de origem"/>
-                            <input type="text" placeholder="Língua de destino"/>
-                        </div>
-                        )
-                    }
-                </form>
-            </aside>
-
-            <section>
-                {!radioForm && <Image src={logo} alt="Logo do chatAI" priority/>}
-                {showAnimation && <Animation title={title} description={description}/>}
-
-                {radioForm && !showAnimation && (
-                <>
-                <div className={styles.chatAnswer}>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in itaque, recusandae nesciunt porro esse cum quaerat pariatur est ut libero id excepturi totam mollitia ab nisi laudantium error necessitatibus!</p>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in itaque, recusandae nesciunt porro esse cum quaerat pariatur est ut libero id excepturi totam mollitia ab nisi laudantium error necessitatibus!</p>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in itaque, recusandae nesciunt porro esse cum quaerat pariatur est ut libero id excepturi totam mollitia ab nisi laudantium error necessitatibus!</p>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in itaque, recusandae nesciunt porro esse cum quaerat pariatur est ut libero id excepturi totam mollitia ab nisi laudantium error necessitatibus!</p>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in itaque, recusandae nesciunt porro esse cum quaerat pariatur est ut libero id excepturi totam mollitia ab nisi laudantium error necessitatibus!</p>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in itaque, recusandae nesciunt porro esse cum quaerat pariatur est ut libero id excepturi totam mollitia ab nisi laudantium error necessitatibus!</p>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in itaque, recusandae nesciunt porro esse cum quaerat pariatur est ut libero id excepturi totam mollitia ab nisi laudantium error necessitatibus!</p>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in itaque, recusandae nesciunt porro esse cum quaerat pariatur est ut libero id excepturi totam mollitia ab nisi laudantium error necessitatibus!</p>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in itaque, recusandae nesciunt porro esse cum quaerat pariatur est ut libero id excepturi totam mollitia ab nisi laudantium error necessitatibus!</p>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in itaque, recusandae nesciunt porro esse cum quaerat pariatur est ut libero id excepturi totam mollitia ab nisi laudantium error necessitatibus!</p>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in itaque, recusandae nesciunt porro esse cum quaerat pariatur est ut libero id excepturi totam mollitia ab nisi laudantium error necessitatibus!</p>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in itaque, recusandae nesciunt porro esse cum quaerat pariatur est ut libero id excepturi totam mollitia ab nisi laudantium error necessitatibus!</p>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in itaque, recusandae nesciunt porro esse cum quaerat pariatur est ut libero id excepturi totam mollitia ab nisi laudantium error necessitatibus!</p>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in itaque, recusandae nesciunt porro esse cum quaerat pariatur est ut libero id excepturi totam mollitia ab nisi laudantium error necessitatibus!</p>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in itaque, recusandae nesciunt porro esse cum quaerat pariatur est ut libero id excepturi totam mollitia ab nisi laudantium error necessitatibus!</p>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in itaque, recusandae nesciunt porro esse cum quaerat pariatur est ut libero id excepturi totam mollitia ab nisi laudantium error necessitatibus!</p>
-                </div>
-
-                <div className={styles.chatInput}>
+                <aside>
+                    <TbLogout2 onClick={handleLogout}/>
+                    <h2>Selecione uma das opções abaixo:</h2>
                     <form>
-                    <textarea 
-                        id="textArea"
-                        className={styles["resizable-textarea"]}
-                        rows={1}
-                        placeholder="Digite aqui" 
-                        value={textValue} 
-                        onChange={e => handleTextChange(e)}
-                    />
-                    <button disabled={textValue.trim() === ""}>
-                        <AiOutlineSend/>
-                    </button>
+                        <span>
+                            <input type="radio" name="option" id="writer" value="writer" onChange={handleRadioInputChange}/>
+                            <label htmlFor="writer">Escritor</label>
+                        </span>
+                        <span>
+                            <input type="radio" name="option" id="recipe" value="recipe" onChange={handleRadioInputChange}/>
+                            <label htmlFor="recipe">Receitas</label>
+                        </span>
+                        <span>
+                            <input type="radio" name="option" id="summary" value="summary" onChange={handleRadioInputChange}/>
+                            <label htmlFor="summary">Resumos</label>
+                        </span>
+                        <span>
+                            <input type="radio" name="option" id="translator" value="translator" onChange={handleRadioInputChange}/>
+                            <label htmlFor="translator">Tradutor</label>
+                        </span>
+                        {
+                            radioForm === "translator" && (
+                            <div className={styles.languages}>
+                                <input type="text" placeholder="Língua de origem"/>
+                                <input type="text" placeholder="Língua de destino"/>
+                            </div>
+                            )
+                        }
                     </form>
-                </div>
-                </>
-                )}
-            </section>
+                </aside>
+
+                <section>
+                    {!radioForm && <Image className={styles.logo} src={logo} alt="Logo do chatAI" priority/>}
+                    {showAnimation && <Animation title={title} description={description}/>}
+
+                    {radioForm && !showAnimation && (
+                    <>
+                        {radioForm === "recipe" && <Recipe/>}
+
+                    </>
+                    )}
+                </section>
             
             </div>
         </main>
