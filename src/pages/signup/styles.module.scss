@@ -72,3 +72,16 @@
 .error {
     border: 1px solid red;
 }
+
+.icon {
+    svg {
+        @include textColors("green");
+        height: 2rem;
+        width: 2rem;
+        margin-top: 1rem;
+        cursor: pointer;
+        &:hover {
+            opacity: .8;
+        }
+    }
+}

@@ -5,11 +5,13 @@ import { useState, FormEvent, ChangeEvent, useEffect } from "react"
 import axios from "axios"
 import { parseCookies } from "nookies"
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
+import { BsFillArrowLeftCircleFill } from "react-icons/bs"
 
 import { baseUrl } from "../../constants/baseUrl"
 import { Loading } from "../../components/loading/Loading"
 
 import styles from "./styles.module.scss"
+import Link from "next/link"
 
 
 export default function Signup () {
@@ -195,6 +197,10 @@ export default function Signup () {
 
                     <button>{isLoading? <Loading/> : 'Cadastrar'}</button>
                 </form>
+
+                <Link href="/" className={styles.icon}>
+                    <BsFillArrowLeftCircleFill/>
+                </Link>
             </main>
         </>
     )
