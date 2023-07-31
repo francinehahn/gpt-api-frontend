@@ -73,9 +73,8 @@ export default function Login() {
                 <link rel="icon" href="/favicon.png" />
             </Head>
 
-            <Header/>
-            
             <main className={styles.container}>
+                <Header/>
                 <h2>Entre na sua conta</h2>
 
                 <form onSubmit={handleLogin}>
