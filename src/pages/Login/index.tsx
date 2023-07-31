@@ -30,6 +30,8 @@ export default function Login() {
     const [passwordError, setPasswordError] = useState("")
     const [inputType, setInputType] = useState("password")
 
+    const isButtonDisabled = email === "" || password === ""
+
     const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setIsLoading(true)
@@ -111,7 +113,7 @@ export default function Login() {
                     </div>
 
                     <p>{axiosError}</p>
-                    <button>{isLoading? <Loading/> : "Entrar"}</button>
+                    <button disabled={isButtonDisabled}>{isLoading? <Loading/> : "Entrar"}</button>
                 </form>
 
                 <span className={styles.span}>

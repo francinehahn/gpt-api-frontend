@@ -36,6 +36,12 @@ body {
             cursor: pointer;
             opacity: .8;
         }
+        &:disabled {
+            cursor: not-allowed;
+            &:hover {
+                opacity: 1;
+            }
+        }
     }
 
     input {

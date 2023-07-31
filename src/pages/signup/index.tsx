@@ -41,6 +41,8 @@ export default function Signup () {
     const [inputTypePass, setInputTypePass] = useState("password")
     const [inputTypeRepeatPass, setInputTypeRepeatPass] = useState("password")
 
+    const isButtonDisabled = name === "" || email === "" || phone === "" || password === "" || repeatPassword === ""
+
     const handlePhoneChange = (e: ChangeEvent<HTMLInputElement>) => {
         const rawPhoneNumber = e.target.value.replace(/\D/g, '')
         const formattedPhoneNumber = formatPhoneNumber(rawPhoneNumber)
@@ -197,7 +199,7 @@ export default function Signup () {
 
                     <p>{axiosError}</p>
 
-                    <button>{isLoading? <Loading/> : 'Cadastrar'}</button>
+                    <button disabled={isButtonDisabled}>{isLoading? <Loading/> : 'Cadastrar'}</button>
                 </form>
 
                 <Link href="/" className={styles.icon}>
