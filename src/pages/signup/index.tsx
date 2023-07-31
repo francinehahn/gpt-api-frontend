@@ -113,9 +113,8 @@ export default function Signup () {
                 <link rel="icon" href="/favicon.png" />
             </Head>
 
-            <Header/>
-
             <main className={styles.container}>
+                <Header/>
                 <h2>Crie uma nova conta</h2>
 
                 <form onSubmit={handleSignup}>

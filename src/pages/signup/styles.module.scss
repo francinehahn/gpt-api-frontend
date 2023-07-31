@@ -4,19 +4,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: .5rem;
     @include bgColors("lightgrey");
     height: 100vh;
 
     h2 {
         text-align: center;
         margin-bottom: 1.5rem;
+        font-size: 1.8rem;
 
-        @media screen and (min-width: 800px) {
-            font-size: 1.8rem;
-        }
         @media screen and (max-width: 800px) {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
         }
     }
 
@@ -24,10 +21,8 @@
         display: flex;
         flex-direction: column;
         gap: .5rem;
-        
-        @media screen and (min-width: 600px) {
-            width: 25rem;
-        }
+        width: 25rem;
+
         @media screen and (max-width: 600px) {
             width: 20rem;
         }
@@ -57,12 +52,10 @@
         width: 1.2rem;
         height: 1.2rem;
         position: absolute;
+        left: 23rem;
         cursor: pointer;
         @include textColors("darkgrey");
 
-        @media screen and (min-width: 600px) {
-            left: 23rem;
-        }
         @media screen and (max-width: 600px) {
             left: 18rem;
         }
