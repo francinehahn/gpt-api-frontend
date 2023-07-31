@@ -10,5 +10,16 @@
     img {
         width: 8.5rem;
         height: 4.5rem;
+        @media screen and (max-width: 870px) {
+            width: 7.5rem;
+            height: 3.5rem;
+        }
+    }
+
+    @media screen and (max-width: 1280px) {
+        padding: 1rem 5rem;
+    }
+    @media screen and (max-width: 870px) {
+        padding: 1rem 2rem;
     }
 }
