@@ -59,9 +59,9 @@ export default function Home() {
     const adjustTextAreaHeight = () => {
         const textarea = document.getElementById("textArea")
         if (textarea) {
-        textarea.style.height = "auto"
-        const newHeight = textarea.scrollHeight
-        textarea.style.height = newHeight + "px"
+            textarea.style.height = "auto"
+            const newHeight = textarea.scrollHeight
+            textarea.style.height = newHeight + "px"
         }
     }
 
@@ -82,30 +82,30 @@ export default function Home() {
                 <TbLogout2 onClick={handleLogout}/>
                 <h2>Selecione uma das opções abaixo:</h2>
                 <form>
-                <span>
-                    <input type="radio" name="option" id="writer" value="writer" onChange={handleRadioInputChange}/>
-                    <label htmlFor="writer">Escritor</label>
-                </span>
-                <span>
-                    <input type="radio" name="option" id="recipe" value="recipe" onChange={handleRadioInputChange}/>
-                    <label htmlFor="recipe">Receitas</label>
-                </span>
-                <span>
-                    <input type="radio" name="option" id="summary" value="summary" onChange={handleRadioInputChange}/>
-                    <label htmlFor="summary">Resumos</label>
-                </span>
-                <span>
-                    <input type="radio" name="option" id="translator" value="translator" onChange={handleRadioInputChange}/>
-                    <label htmlFor="translator">Tradutor</label>
-                </span>
-                {
-                    radioForm === "translator" && (
-                    <div className={styles.languages}>
-                        <input type="text" placeholder="Língua de origem"/>
-                        <input type="text" placeholder="Língua de destino"/>
-                    </div>
-                    )
-                }
+                    <span>
+                        <input type="radio" name="option" id="writer" value="writer" onChange={handleRadioInputChange}/>
+                        <label htmlFor="writer">Escritor</label>
+                    </span>
+                    <span>
+                        <input type="radio" name="option" id="recipe" value="recipe" onChange={handleRadioInputChange}/>
+                        <label htmlFor="recipe">Receitas</label>
+                    </span>
+                    <span>
+                        <input type="radio" name="option" id="summary" value="summary" onChange={handleRadioInputChange}/>
+                        <label htmlFor="summary">Resumos</label>
+                    </span>
+                    <span>
+                        <input type="radio" name="option" id="translator" value="translator" onChange={handleRadioInputChange}/>
+                        <label htmlFor="translator">Tradutor</label>
+                    </span>
+                    {
+                        radioForm === "translator" && (
+                        <div className={styles.languages}>
+                            <input type="text" placeholder="Língua de origem"/>
+                            <input type="text" placeholder="Língua de destino"/>
+                        </div>
+                        )
+                    }
                 </form>
             </aside>
 
