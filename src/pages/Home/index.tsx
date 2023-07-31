@@ -1,13 +1,17 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { useState } from 'react'
+import Router from 'next/router'
 
-import nookies from "nookies"
+import nookies, { destroyCookie } from "nookies"
+import { TbLogout2 } from "react-icons/tb"
+
 import logo from "../../assets/chatAI-logo.png"
 import { AiOutlineSend } from "react-icons/ai"
 import styles from "./styles.module.scss"
 import { Animation } from '@/components/animation/Animation'
 import { GetServerSidePropsContext } from 'next'
+
 
 
 export default function Home() {
@@ -17,6 +21,11 @@ export default function Home() {
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
     const [showAnimation, setShowAnimation] = useState(false)
+
+    const handleLogout = () => {
+        destroyCookie(null, "token")
+        Router.push("/")
+    }
 
     const handleRadioInputChange = (e: any) => {
         setRadioForm(e.target.value)
@@ -70,6 +79,7 @@ export default function Home() {
             <div className={styles.container}>
 
             <aside>
+                <TbLogout2 onClick={handleLogout}/>
                 <h2>Selecione uma das opções abaixo:</h2>
                 <form>
                 <span>

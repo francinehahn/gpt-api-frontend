@@ -34,6 +34,21 @@
       width: 100vw;
     }
 
+    svg {
+      width: 2rem;
+      height: 2rem;
+      @include textColors("green");
+      &:hover {
+        cursor: pointer;
+        opacity: .8;
+      }
+
+      @media screen and (max-width: 890px) {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+
     h2 {
       font-size: 1rem;
       margin-bottom: .5rem;
@@ -69,16 +84,12 @@
   
       input {
         width: 12rem;
-        font-size: 1rem;
         padding: .1rem .5rem;
 
         @media screen and (max-width: 890px) {
           width: 10rem;
           font-size: .9rem;
         }
-      }
-      input:focus {
-        outline: none;
       }
 
       @media screen and (max-width: 890px) {
