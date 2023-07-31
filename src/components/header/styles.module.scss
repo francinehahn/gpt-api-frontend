@@ -3,13 +3,13 @@
 .container {
     width: 100%;
     display: flex;
-    justify-content: flex-start;
-    padding: 1rem 10rem;
+    justify-content: center;
+    padding: 1rem 0;
     @include bgColors("lightgrey");
 
     img {
         width: 8.5rem;
-        height: 4.5rem;
+        height: 4rem;
         @media screen and (max-width: 870px) {
             width: 7.5rem;
             height: 3.5rem;
