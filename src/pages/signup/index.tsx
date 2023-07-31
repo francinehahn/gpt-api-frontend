@@ -199,7 +199,7 @@ export default function Signup () {
 
                     <p>{axiosError}</p>
 
-                    <button disabled={isButtonDisabled}>{isLoading? <Loading/> : 'Cadastrar'}</button>
+                    <button disabled={isButtonDisabled}>{isLoading? <Loading button={true}/> : 'Cadastrar'}</button>
                 </form>
 
                 <Link href="/" className={styles.icon}>

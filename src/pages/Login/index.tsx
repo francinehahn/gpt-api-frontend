@@ -113,7 +113,7 @@ export default function Login() {
                     </div>
 
                     <p>{axiosError}</p>
-                    <button disabled={isButtonDisabled}>{isLoading? <Loading/> : "Entrar"}</button>
+                    <button disabled={isButtonDisabled}>{isLoading? <Loading button={true}/> : "Entrar"}</button>
                 </form>
 
                 <span className={styles.span}>

@@ -74,7 +74,7 @@ export function Recipe () {
     return (
         <>
             <div className={styles.chatAnswer}>
-                {isLoading && <Loading/>}
+                {isLoading && <Loading button={false}/>}
                 {!isLoading && data && renderData}
                 {!isLoading && error && <p>{error}</p>}
             </div>
