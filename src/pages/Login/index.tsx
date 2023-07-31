@@ -10,6 +10,7 @@ import {BsEye, BsEyeSlash} from 'react-icons/bs'
 import {Loading} from '../../components/loading/Loading'
 import { baseUrl } from "../../constants/baseUrl"
 import styles from "./styles.module.scss"
+import { Header } from "@/components/header/Header";
 
 
 export default function Login() {
@@ -72,6 +73,8 @@ export default function Login() {
                 <link rel="icon" href="/favicon.png" />
             </Head>
 
+            <Header/>
+            
             <main className={styles.container}>
                 <h2>Entre na sua conta</h2>
 

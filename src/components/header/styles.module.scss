@@ -1,0 +1,14 @@
+@import "../../styles/base";
+
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    padding: 1rem 10rem;
+    @include bgColors("lightgrey");
+
+    img {
+        width: 8.5rem;
+        height: 4.5rem;
+    }
+}

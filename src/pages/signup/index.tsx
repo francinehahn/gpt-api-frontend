@@ -12,6 +12,7 @@ import { Loading } from "../../components/loading/Loading"
 
 import styles from "./styles.module.scss"
 import Link from "next/link"
+import { Header } from "@/components/header/Header"
 
 
 export default function Signup () {
@@ -111,6 +112,8 @@ export default function Signup () {
                 <meta name="keywords" content="chat, inteligência artificial, openai, chatgpt"/>
                 <link rel="icon" href="/favicon.png" />
             </Head>
+
+            <Header/>
 
             <main className={styles.container}>
                 <h2>Crie uma nova conta</h2>
