@@ -30,11 +30,11 @@ The back-end consumes data from the openAI api and the layout is responsive to a
     - Deletion: the user can delete any of the questions/answers
 
 ## 📷 Images
-![Signup-desktop](./src/images/print-signup-desktop.png)
-![Login-desktop](./src/images/print-login-desktop.png)
-![Home-desktop](./src/images/print-home-desktop.png)
-![Home2-desktop](./src/images/print-home2-desktop.png)
-![Home3-desktop](./src/images/print-home3-desktop.png)
+![Signup-desktop](./src/assets/print-signup-desktop.png)
+![Login-desktop](./src/assets/print-login-desktop.png)
+![Home-desktop](./src/assets/print-home-desktop.png)
+![Home2-desktop](./src/assets/print-home2-desktop.png)
+![Home3-desktop](./src/assets/print-home3-desktop.png)
 <br>
 <img src="./src/assets/print-login-mobile.png" width="35%"/>
 <img src="./src/assets/print-signup-mobile.png" width="35%"/>
