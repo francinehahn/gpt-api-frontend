@@ -1,12 +1,15 @@
 import { FormEvent, KeyboardEvent, useRef } from "react"
 import { AiOutlineSend } from "react-icons/ai"
+import { GrPowerCycle } from "react-icons/gr"
 import styles from "./styles.module.scss"
 
 interface PropsInput {
     handleSubmit: (e: FormEvent<HTMLFormElement>) => void,
+    handleRegenerate: () => void,
     textValue: string,
     setTextValue: (x: string) => void,
-    isLoading: boolean,
+    isLoadingChat: boolean,
+    isLoadingRegenerate: boolean,
     languagesFilledOut?: boolean
 }
 
@@ -37,30 +40,37 @@ export function ChatInput(props: PropsInput) {
     return (
         <div className={styles.chatInput}>
             <form ref={formRef} onSubmit={props.handleSubmit}>
-                <textarea 
-                    id="textArea"
-                    className={styles["resizable-textarea"]}
-                    rows={1}
-                    placeholder="Digite aqui" 
-                    value={props.textValue} 
-                    onChange={handleTextChange}
-                    onKeyDown={handleKeyDown}
-                />
-                {
-                    props.languagesFilledOut === undefined && (
-                        <button disabled={props.textValue.trim() === ""}>
-                            {props.isLoading? <p>...</p> : <AiOutlineSend/>}
-                        </button>
-                    )
-                }
+                <button type="button" className={styles.regenerate} onClick={props.handleRegenerate}>
+                    {!props.isLoadingRegenerate && <GrPowerCycle/>}
+                    {props.isLoadingRegenerate? "..." : "Reenviar"}
+                </button>
+                
+                <div>
+                    <textarea 
+                        id="textArea"
+                        className={styles["resizable-textarea"]}
+                        rows={1}
+                        placeholder="Digite aqui" 
+                        value={props.textValue} 
+                        onChange={handleTextChange}
+                        onKeyDown={handleKeyDown}
+                    />
+                    {
+                        props.languagesFilledOut === undefined && (
+                            <button disabled={props.textValue.trim() === ""}>
+                                {props.isLoadingChat? <p>...</p> : <AiOutlineSend/>}
+                            </button>
+                        )
+                    }
 
-                {
-                    props.languagesFilledOut !== undefined && (
-                        <button disabled={props.textValue.trim() === "" || !props.languagesFilledOut}>
-                            {props.isLoading? <p>...</p> : <AiOutlineSend/>}
-                        </button>
-                    )
-                }
+                    {
+                        props.languagesFilledOut !== undefined && (
+                            <button disabled={props.textValue.trim() === "" || !props.languagesFilledOut}>
+                                {props.isLoadingChat? <p>...</p> : <AiOutlineSend/>}
+                            </button>
+                        )
+                    }
+                </div>
             </form>
         </div>
     )

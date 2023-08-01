@@ -24,6 +24,7 @@ interface TranslatorProps {
 export function Translator (props: TranslatorProps) {
     const [translationRequest, setTranslationRequest] = useState<string>("")
     const [isLoadingChat, setIsLoadingChat] = useState<boolean>(false)
+    const [isLoadingRegenerate, setIsLoadingRegenerate] = useState<boolean>(false)
     const [reload, setReload] = useState<boolean>(true)
     const [data, isLoading, error] = useRequestData(`${baseUrl}get-translations`, reload)
     
@@ -75,6 +76,27 @@ export function Translator (props: TranslatorProps) {
         })
     }
 
+    const handleRegenerate = () => {
+        setIsLoadingRegenerate(true)
+        const cookies = JSON.parse(parseCookies().token)
+        const body = {
+            source_language: props.sourceLanguage,
+            target_language: props.targetLanguage
+        }
+
+        axios.patch(`${baseUrl}regenerate-translation`, body, {
+            headers: {
+                Authorization: `Bearer ${cookies.token}`
+            }
+        }).then(() => {
+            setIsLoadingRegenerate(false)
+            setReload(!reload)
+        }).catch(err => {
+            setIsLoadingRegenerate(false)
+            alert(err.response.data.error)
+        })
+    }
+
     return (
         <>
             <div className={styles.chatAnswer}>
@@ -84,9 +106,11 @@ export function Translator (props: TranslatorProps) {
             </div>
             <ChatInput 
                 handleSubmit={handleSubmit} 
+                handleRegenerate={handleRegenerate}
                 textValue={translationRequest} 
                 setTextValue={setTranslationRequest}
-                isLoading={isLoadingChat}
+                isLoadingChat={isLoadingChat}
+                isLoadingRegenerate={isLoadingRegenerate}
                 languagesFilledOut={props.sourceLanguage !== "" && props.targetLanguage !== ""}
             />
         </>

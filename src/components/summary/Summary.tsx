@@ -19,6 +19,7 @@ interface SummaryProps {
 export function Summary () {
     const [summaryRequest, setSummaryRequest] = useState<string>("")
     const [isLoadingChat, setIsLoadingChat] = useState<boolean>(false)
+    const [isLoadingRegenerate, setIsLoadingRegenerate] = useState<boolean>(false)
     const [reload, setReload] = useState<boolean>(true)
     const [data, isLoading, error] = useRequestData(`${baseUrl}get-summaries`, reload)
 
@@ -65,6 +66,23 @@ export function Summary () {
         })
     }
 
+    const handleRegenerate = () => {
+        setIsLoadingRegenerate(true)
+        const cookies = JSON.parse(parseCookies().token)
+
+        axios.patch(`${baseUrl}regenerate-summary`, null, {
+            headers: {
+                Authorization: `Bearer ${cookies.token}`
+            }
+        }).then(() => {
+            setIsLoadingRegenerate(false)
+            setReload(!reload)
+        }).catch(err => {
+            setIsLoadingRegenerate(false)
+            alert(err.response.data.error)
+        })
+    }
+
     return (
         <>
             <div className={styles.chatAnswer}>
@@ -74,9 +92,11 @@ export function Summary () {
             </div>
             <ChatInput 
                 handleSubmit={handleSubmit} 
+                handleRegenerate={handleRegenerate}
                 textValue={summaryRequest} 
                 setTextValue={setSummaryRequest}
-                isLoading={isLoadingChat}
+                isLoadingChat={isLoadingChat}
+                isLoadingRegenerate={isLoadingRegenerate}
             />
         </>
     )

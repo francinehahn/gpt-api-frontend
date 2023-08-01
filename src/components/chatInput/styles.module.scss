@@ -16,69 +16,95 @@
     
     form {
       display: flex;
-      @include bgColors("white");
-      width: 52rem;
-      margin-left: 16.5rem;
-      min-height: 3.2rem;
-      box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.121);
-      border-radius: .7rem;
-      border: 1px solid rgb(201, 201, 201);
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 1rem;
 
-      @media screen and (max-width: 1280px) {
-        width: 45rem;
-      }
-      @media screen and (max-width: 1050px) {
-        width: 35rem;
-      }
-      @media screen and (max-width: 890px) {
-        margin-left: 0;
-        width: 90vw;
-      }
-      
-      .resizable-textarea {
-        resize: none;
-        overflow-y: auto;
-        height: 3.2rem;
-        max-height: 13rem;
-        width: 100%;
-      
-        border: none;
-        border-radius: .7rem;
-      
-        @include bgColors("white");
-        font-size: 1rem;
-        padding: .7rem;
-      }
-
-      .resizable-textarea::-webkit-scrollbar {
-        width: .5rem;
-      }
-
-      textarea:focus {
-        outline: none;
-      }
-  
-    button {
+      .regenerate {
         display: flex;
-        justify-content: center;
         align-items: center;
-        border: none;
-        border-radius: .7rem;
-        width: 10%;
+        justify-content: center;
+        gap: .5rem;
         @include bgColors("white");
-        @include textColors("green");
-        cursor: pointer;
-  
-        svg {
-          height: 1.5rem;
-          width: 1.5rem;
+        @include textColors("black");
+        width: 7.5rem;
+        box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.121);
+        border-radius: .4rem;
+        border: 1px solid rgb(201, 201, 201);
+        font-size: .875rem;
+        font-weight: 600;
+
+        &:hover {
+          @include bgColors("lightgrey");
+          opacity: 1;
         }
-    }
-  
-    button:disabled {
-        @include textColors("lightgrey");
+      }
+
+      div {
+        display: flex;
         @include bgColors("white");
-        cursor: context-menu;
+        width: 52rem;
+        margin-left: 16.5rem;
+        min-height: 3.2rem;
+        box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.121);
+        border-radius: .7rem;
+        border: 1px solid rgb(201, 201, 201);
+
+        @media screen and (max-width: 1280px) {
+          width: 45rem;
+        }
+        @media screen and (max-width: 1050px) {
+          width: 35rem;
+        }
+        @media screen and (max-width: 890px) {
+          margin-left: 0;
+          width: 90vw;
+        }
+
+        .resizable-textarea {
+          resize: none;
+          overflow-y: auto;
+          height: 3.2rem;
+          max-height: 13rem;
+          width: 100%;
+        
+          border: none;
+          border-radius: .7rem;
+        
+          @include bgColors("white");
+          font-size: 1rem;
+          padding: .7rem;
+
+          &:focus {
+            outline: none;
+          }
+          &::-webkit-scrollbar {
+            width: .5rem;
+          }
+        }
+    
+        button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border: none;
+          border-radius: .7rem;
+          width: 10%;
+          @include bgColors("white");
+          @include textColors("green");
+          cursor: pointer;
+    
+          svg {
+            height: 1.5rem;
+            width: 1.5rem;
+          }
+
+          &:disabled {
+            @include textColors("lightgrey");
+            @include bgColors("white");
+            cursor: context-menu;
+          }
+        }
       }
     }
 }

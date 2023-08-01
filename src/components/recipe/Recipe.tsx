@@ -19,6 +19,7 @@ interface RecipeProps {
 export function Recipe () {
     const [recipeRequest, setRecipeRequest] = useState<string>("")
     const [isLoadingChat, setIsLoadingChat] = useState<boolean>(false)
+    const [isLoadingRegenerate, setIsLoadingRegenerate] = useState<boolean>(false)
     const [reload, setReload] = useState<boolean>(true)
     const [data, isLoading, error] = useRequestData(`${baseUrl}get-recipes`, reload)
 
@@ -32,7 +33,7 @@ export function Recipe () {
     })
 
     const handleDeleteQuestion = (recipeId: string) => {
-        const cookies = parseCookies()
+        const cookies = JSON.parse(parseCookies().token)
 
         axios.delete(`${baseUrl}delete-recipe/${recipeId}`, {
             headers: {
@@ -44,7 +45,7 @@ export function Recipe () {
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setIsLoadingChat(true)
-        const cookies = parseCookies()
+        const cookies = JSON.parse(parseCookies().token)
 
         const body = {ingredients: recipeRequest}
 
@@ -65,6 +66,23 @@ export function Recipe () {
         })
     }
 
+    const handleRegenerate = () => {
+        setIsLoadingRegenerate(true)
+        const cookies = JSON.parse(parseCookies().token)
+
+        axios.patch(`${baseUrl}regenerate-recipe`, null, {
+            headers: {
+                Authorization: `Bearer ${cookies.token}`
+            }
+        }).then(() => {
+            setIsLoadingRegenerate(false)
+            setReload(!reload)
+        }).catch(err => {
+            setIsLoadingRegenerate(false)
+            alert(err.response.data.error)
+        })
+    }
+
     return (
         <>
             <div className={styles.chatAnswer}>
@@ -73,10 +91,12 @@ export function Recipe () {
                 {!isLoading && error && <p>{error}</p>}
             </div>
             <ChatInput 
-                handleSubmit={handleSubmit} 
+                handleSubmit={handleSubmit}
+                handleRegenerate={handleRegenerate}
                 textValue={recipeRequest} 
                 setTextValue={setRecipeRequest}
-                isLoading={isLoadingChat}
+                isLoadingChat={isLoadingChat}
+                isLoadingRegenerate={isLoadingRegenerate}
             />
         </>
     )

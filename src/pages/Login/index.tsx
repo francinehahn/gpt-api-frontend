@@ -4,6 +4,7 @@ import Head from "next/head";
 import Link from "next/link"
 
 import axios from "axios"
+import { parse, format, addSeconds, addHours } from 'date-fns';
 import { setCookie, parseCookies } from "nookies"
 import {BsEye, BsEyeSlash} from 'react-icons/bs'
 
@@ -53,9 +54,11 @@ export default function Login() {
             axios.post(`${baseUrl}users/login`, body)
             .then(response => {
                 setIsLoading(false)
-                setCookie(undefined, 'token', response.data.token, {
-                    maxAge: 60 * 60 * 24 //24 hours
-                })
+                setCookie(null, 'token', JSON.stringify({ token: response.data.token, expDate: addHours(new Date(), 24) }), {
+                    expires: addHours(new Date(), 24),
+                    path: '/',
+                  })
+            
                 Router.push("/home")
             })
             .catch(error => {

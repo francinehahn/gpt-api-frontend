@@ -8,7 +8,7 @@ export function useRequestData(url: string, reload: boolean) {
     const [error, setError] = useState<string>("")
 
     useEffect(() => {
-        const cookies = parseCookies()
+        const cookies = JSON.parse(parseCookies().token)
 
         axios.get(url, {
             headers: {

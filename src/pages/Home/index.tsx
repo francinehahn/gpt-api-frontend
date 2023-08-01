@@ -18,12 +18,12 @@ import { Translator } from '@/components/translator/Translator'
 
 export default function Home() {
     const [radioForm, setRadioForm] = useState("")
-    const [sourceLanguage, setSourceLanguage] = useState("")
-    const [targetLanguage, setTargetLanguage] = useState("")
+    const [sourceLanguage, setSourceLanguage] = useState("Português")
+    const [targetLanguage, setTargetLanguage] = useState("Inglês")
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
     const [showAnimation, setShowAnimation] = useState(false)
-
+    
     const handleLogout = () => {
         destroyCookie(null, "token")
         Router.push("/")
@@ -130,16 +130,28 @@ export default function Home() {
 }
 
 export async function getServerSideProps (ctx: GetServerSidePropsContext) {
-    const cookies = nookies.get(ctx);
+    const cookies = nookies.get(ctx)
 
-    if (!cookies.token) {
+    if (!JSON.parse(cookies.token)) {
         return {
             redirect: {
                 destination: "/",
                 permanent: false
             }
         }
+    } else {
+        const expDate = JSON.parse(cookies.token).expDate
+        if (new Date(expDate) <= new Date()) {
+            destroyCookie(null, "token")
+            return {
+                redirect: {
+                    destination: "/",
+                    permanent: false
+                }
+            }
+        }
     }
+
     return {
         props: {}
     }

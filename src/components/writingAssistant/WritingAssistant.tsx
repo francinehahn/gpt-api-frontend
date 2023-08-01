@@ -19,6 +19,7 @@ interface TextProps {
 export function WritingAssistant () {
     const [writingRequest, setWritingRequest] = useState<string>("")
     const [isLoadingChat, setIsLoadingChat] = useState<boolean>(false)
+    const [isLoadingRegenerate, setIsLoadingRegenerate] = useState<boolean>(false)
     const [reload, setReload] = useState<boolean>(true)
     const [data, isLoading, error] = useRequestData(`${baseUrl}get-texts`, reload)
     
@@ -66,6 +67,23 @@ export function WritingAssistant () {
         })
     }
 
+    const handleRegenerate = () => {
+        setIsLoadingRegenerate(true)
+        const cookies = JSON.parse(parseCookies().token)
+
+        axios.patch(`${baseUrl}regenerate-text`, null, {
+            headers: {
+                Authorization: `Bearer ${cookies.token}`
+            }
+        }).then(() => {
+            setIsLoadingRegenerate(false)
+            setReload(!reload)
+        }).catch(err => {
+            setIsLoadingRegenerate(false)
+            alert(err.response.data.error)
+        })
+    }
+
     return (
         <>
             <div className={styles.chatAnswer}>
@@ -75,9 +93,11 @@ export function WritingAssistant () {
             </div>
             <ChatInput 
                 handleSubmit={handleSubmitText} 
+                handleRegenerate={handleRegenerate}
                 textValue={writingRequest} 
                 setTextValue={setWritingRequest}
-                isLoading={isLoadingChat}
+                isLoadingChat={isLoadingChat}
+                isLoadingRegenerate={isLoadingRegenerate}
             />
         </>
     )
