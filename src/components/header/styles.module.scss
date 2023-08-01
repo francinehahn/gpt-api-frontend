@@ -1,0 +1,25 @@
+@import "../../styles/base";
+
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+    @include bgColors("lightgrey");
+
+    img {
+        width: 8.5rem;
+        height: 4rem;
+        @media screen and (max-width: 870px) {
+            width: 7.5rem;
+            height: 3.5rem;
+        }
+    }
+
+    @media screen and (max-width: 1280px) {
+        padding: 1rem 5rem;
+    }
+    @media screen and (max-width: 870px) {
+        padding: 1rem 2rem;
+    }
+}

@@ -1,0 +1,27 @@
+@import "../../styles/base";
+
+@keyframes dotPulse {
+    0%, 100% {
+      opacity: 0.6;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+  }
+  
+.dot {
+    animation: dotPulse 1s infinite;
+    @include bgColors("green");
+    border-radius: 50%;
+    width: 5px;
+    height: 5px;
+}
+  

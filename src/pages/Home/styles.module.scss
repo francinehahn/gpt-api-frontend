@@ -1,0 +1,124 @@
+@import "../../styles/base";
+
+.main {
+  @include bgColors("green");
+  width: 100vw;
+  height: 100vh;
+}
+
+.container {
+  @include bgColors("lightgrey");
+  width: 98vw;
+  height: 95vh;
+  position: absolute;
+  top: 2.5vh;
+  left: 1vw;
+  display: flex;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.249);
+  overflow: hidden;
+
+  @media screen and (max-width: 890px) {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    flex-direction: column;
+  }
+
+  aside {
+    @include bgColors("white");
+    width: 19rem;
+    padding: 1.5rem;
+
+    @media screen and (max-width: 890px) {
+      width: 100vw;
+    }
+
+    svg {
+      width: 2rem;
+      height: 2rem;
+      @include textColors("green");
+      &:hover {
+        cursor: pointer;
+        opacity: .8;
+      }
+
+      @media screen and (max-width: 890px) {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+
+    h2 {
+      font-size: 1rem;
+      margin-bottom: .5rem;
+      @media screen and (max-width: 890px) {
+        text-align: center;
+      }
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: .3rem;
+
+      span {
+        display: flex;
+        align-items: center;
+        gap: .4rem;
+      }
+
+      @media screen and (max-width: 890px) {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+    }
+
+    .languages {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: .4rem;
+      margin-top: .5rem;
+  
+      input {
+        width: 12rem;
+        padding: .1rem .5rem;
+
+        @media screen and (max-width: 890px) {
+          width: 10rem;
+          font-size: .9rem;
+        }
+      }
+
+      @media screen and (max-width: 890px) {
+        flex-direction: row;
+      }
+    }
+  }
+
+  section {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+
+    .logo {
+      width: 10rem;
+      height: 5rem;
+      display: block;
+      margin: 40vh auto;
+    }
+
+    &::-webkit-scrollbar {
+      width: .75rem;
+    }
+  }
+}
+
+.errorLanguages {
+  border: 1px solid red;
+}

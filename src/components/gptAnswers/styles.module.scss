@@ -1,0 +1,61 @@
+@import "../../styles/base";
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+
+    .question {
+        display: flex;
+        justify-content: space-between;
+        gap: 1.5rem;
+        padding: 1rem;
+        @include bgColors("white");
+        width: 100%;
+
+        span {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+
+            :nth-child(1) {
+                @include bgColors("green");
+                @include textColors("white");
+                font-size: .875rem;
+                padding: .3rem .5rem;
+                border-radius: .25rem;
+            }
+            :nth-child(2) {
+                font-size: 1rem;
+                line-height: 1.7rem;
+            }
+        }
+        svg {
+            min-height: 1.5rem;
+            min-width: 1.5rem;
+            @include textColors("lightgrey");
+            cursor: pointer;
+            &:hover {
+                opacity: .8;
+            }
+        }
+    }
+
+    .answer {
+        display: flex;
+        align-items: flex-start;
+        gap: 1.5rem;
+        padding: 1rem;
+
+        p {
+            font-size: 1rem;
+            line-height: 1.7rem;
+        }
+
+        img {
+            height: 1.8rem;
+            width: 2rem;
+            border-radius: .25rem;
+        }
+    }
+}

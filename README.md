@@ -1,38 +1,60 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">Front-end - ChatAI: Inspyred by ChatGPT</h1>
 
-## Getting Started
+## ℹ️ About
+This is a chat that consumes data from an API developed by me. The link of the github repository is: https://github.com/francinehahn/gpt-api-backend
 
-First, run the development server:
+The back-end consumes data from the openAI api and the layout is responsive to all screen sizes.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## 🌐 Deploy
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## 👩‍💻 Technologies
+- Typescript
+- Next.js
+- Sass
+- Axios
+- Nookies
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## ☑️ Functionalities
+- `Login/Signup Page:`
+    - Login
+    - User registration
+    - Input validation
+    - Authentication
+- `Home Page:`
+    - Recipes generator: the user provides a list of ingrdients and the chatAI returns a recipe
+    - Text generator: the user provides a subject and the chatAI returns a text
+    - Summary generator: the user provides a text and the chatAI returns a summary of it
+    - Translator: the user provides a text, a source language and a target language and the chatAI returns the translation
+    - Regenerate: the user can regenerate the last answer of the chatAI by clicking on a button
+    - Deletion: the user can delete any of the questions/answers
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## 📷 Images
+![Signup-desktop](./images/print-signup-desktop.png)
+![Login-desktop](./images/print-login-desktop.png)
+![Home-desktop](./images/print-home-desktop.png)
+![Home2-desktop](./images/print-home2-desktop.png)
+![Home3-desktop](./images/print-home3-desktop.png)
+<br>
+<img src="./src/assets/print-login-mobile.png" width="35%"/>
+<img src="./src/assets/print-signup-mobile.png" width="35%"/>
+<img src="./src/assets/print-home-mobile.png" width="35%"/>
+<img src="./src/assets/print-home2-mobile.png" width="35%"/>
+<img src="./src/assets/print-home3-mobile.png" width="35%"/>
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 🛰 Running the project
+<pre>
+    <code>git clone https://github.com/francinehahn/gpt-api-frontend.git</code>
+</pre>
 
-## Learn More
+<pre>
+    <code>cd gpt-api-frontend</code>
+</pre>
 
-To learn more about Next.js, take a look at the following resources:
+<pre>
+  <code>npm install</code>
+</pre>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<pre>
+  <code>npm run start</code>
+</pre>

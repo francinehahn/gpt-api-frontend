@@ -1,0 +1,113 @@
+@import "../../styles/base";
+
+.chatInput {
+    background-color: transparent;
+    position: absolute;
+    bottom: 0;
+    right: 1.5rem;
+  
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  
+    width: 100%;
+    height: 13rem;
+    padding: 1rem 0 2rem 1.5rem;
+    
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 1rem;
+
+      .regenerate {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .5rem;
+        @include bgColors("white");
+        @include textColors("black");
+        width: 7rem;
+        min-height: 2.5rem;
+        box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.121);
+        border-radius: .4rem;
+        border: 1px solid rgb(201, 201, 201);
+        font-size: .875rem;
+        font-weight: 600;
+
+        &:hover {
+          @include bgColors("lightgrey");
+          opacity: 1;
+        }
+      }
+
+      .div {
+        display: flex;
+        align-items: center;
+        @include bgColors("white");
+        width: 51rem;
+        margin-left: 17.5rem;
+        min-height: 3.2rem;
+        box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.121);
+        border-radius: .7rem;
+        border: 1px solid rgb(201, 201, 201);
+
+        @media screen and (max-width: 1280px) {
+          width: 45rem;
+          margin-left: 16rem;
+        }
+        @media screen and (max-width: 1050px) {
+          width: 35rem;
+        }
+        @media screen and (max-width: 890px) {
+          margin-left: 1rem;
+          width: 90vw;
+        }
+
+        .resizable-textarea {
+          resize: none;
+          overflow-y: auto;
+          height: 3.2rem;
+          max-height: 13rem;
+          width: 100%;
+        
+          border: none;
+          border-radius: .7rem;
+        
+          @include bgColors("white");
+          font-size: 1rem;
+          padding: .7rem;
+
+          &:focus {
+            outline: none;
+          }
+          &::-webkit-scrollbar {
+            width: .5rem;
+          }
+        }
+    
+        button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border: none;
+          border-radius: .7rem;
+          width: 10%;
+          @include bgColors("white");
+          @include textColors("green");
+          cursor: pointer;
+    
+          svg {
+            height: 1.5rem;
+            width: 1.5rem;
+          }
+
+          &:disabled {
+            @include textColors("lightgrey");
+            @include bgColors("white");
+            cursor: context-menu;
+          }
+        }
+      }
+    }
+}
