@@ -11,6 +11,8 @@ import styles from "./styles.module.scss"
 import { Animation } from '@/components/animation/Animation'
 import { GetServerSidePropsContext } from 'next'
 import { Recipe } from '@/components/recipe/Recipe'
+import { WritingAssistant } from '@/components/writingAssistant/WritingAssistant'
+
 
 export default function Home() {
     const [radioForm, setRadioForm] = useState("")
@@ -43,7 +45,7 @@ export default function Home() {
         setShowAnimation(true)
 
         setTimeout(() => {
-        setShowAnimation(false)
+            setShowAnimation(false)
         }, 4000)
     }
 
@@ -97,8 +99,8 @@ export default function Home() {
 
                     {radioForm && !showAnimation && (
                     <>
+                        {radioForm === "writer" && <WritingAssistant/>}
                         {radioForm === "recipe" && <Recipe/>}
-
                     </>
                     )}
                 </section>
@@ -120,7 +122,6 @@ export async function getServerSideProps (ctx: GetServerSidePropsContext) {
             }
         }
     }
-
     return {
         props: {}
     }

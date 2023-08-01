@@ -8,7 +8,7 @@ import { ChatInput } from "../chatInput/chatInput"
 import axios from "axios"
 import { parseCookies } from "nookies"
 
-interface RecipeProps {
+interface TextProps {
     answer: string,
     created_at: string,
     id: string,
@@ -16,27 +16,27 @@ interface RecipeProps {
     user_id: string
 }
 
-export function Recipe () {
-    const [recipeRequest, setRecipeRequest] = useState<string>("")
+export function WritingAssistant () {
+    const [answer, setAnswer] = useState<string>("")
     const [isLoadingChat, setIsLoadingChat] = useState<boolean>(false)
     const [isLoadingDeletion, setIsLoadingDeletion] = useState<boolean>(false)
     const [reload, setReload] = useState<boolean>(true)
-    const [data, isLoading, error] = useRequestData(`${baseUrl}get-recipes`, reload)
+    const [data, isLoading, error] = useRequestData(`${baseUrl}get-texts`, reload)
     const cookies = parseCookies()
-
-    const renderData = data && data.recipes.map((recipe: RecipeProps) => {
+    
+    const renderData = data && data.texts.map((text: TextProps) => {
         return <GptAnswers 
-                    key={recipe.id} 
-                    question={recipe.question} 
-                    answer={recipe.answer}
-                    handleDeleteQuestion={() => handleDeleteQuestion(recipe.id)}
+                    key={text.id} 
+                    question={text.question} 
+                    answer={text.answer}
+                    handleDeleteQuestion={() => handleDeleteQuestion(text.id)}
                     isLoading={isLoadingDeletion}
                 />
     })
 
-    const handleDeleteQuestion = (recipeId: string) => {
+    const handleDeleteQuestion = (textId: string) => {
         setIsLoadingDeletion(true)
-        axios.delete(`${baseUrl}delete-recipe/${recipeId}`, {
+        axios.delete(`${baseUrl}delete-text/${textId}`, {
             headers: {
                 Authorization: `Bearer ${cookies.token}`
             }
@@ -49,23 +49,25 @@ export function Recipe () {
         })
     }
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmitText = (e: FormEvent<HTMLFormElement>) => {
+        console.log("entreiii")
         e.preventDefault()
         setIsLoadingChat(true)
 
-        const body = {ingredients: recipeRequest}
+        const body = {text: answer}
 
-        axios.post(`${baseUrl}create-recipe`, body, {
+        axios.post(`${baseUrl}create-text`, body, {
             headers: {
                 Authorization: `Bearer ${cookies.token}`
             }
         }).then(() => {
             setIsLoadingChat(false)
             setReload(!reload)
-            setRecipeRequest("")
+            setAnswer("")
         }).catch(err => {
             setIsLoadingChat(false)
-            setRecipeRequest("")
+            setReload(!reload)
+            setAnswer("")
             alert(err.response.data.error)
         })
     }
@@ -78,9 +80,9 @@ export function Recipe () {
                 {!isLoading && error && <p>{error}</p>}
             </div>
             <ChatInput 
-                handleSubmit={handleSubmit} 
-                textValue={recipeRequest} 
-                setTextValue={setRecipeRequest}
+                handleSubmit={handleSubmitText} 
+                textValue={answer} 
+                setTextValue={setAnswer}
                 isLoading={isLoadingChat}
             />
         </>

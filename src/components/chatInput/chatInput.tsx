@@ -1,4 +1,4 @@
-import { useState, FormEvent } from "react"
+import { FormEvent } from "react"
 import { AiOutlineSend } from "react-icons/ai"
 import styles from "./styles.module.scss"
 
