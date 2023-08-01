@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from 'react'
+import React, { useState, ChangeEvent } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import Router from 'next/router'
@@ -7,11 +7,11 @@ import { GetServerSidePropsContext } from 'next'
 import nookies, { destroyCookie } from "nookies"
 import { TbLogout2 } from "react-icons/tb"
 
-import { Animation } from '@/components/animation/Animation'
-import { Recipe } from '@/components/recipe/Recipe'
-import { WritingAssistant } from '@/components/writingAssistant/WritingAssistant'
-import { Summary } from '@/components/summary/Summary'
-import { Translator } from '@/components/translator/Translator'
+import { Animation } from '../../components/animation/Animation'
+import { Recipe } from '../../components/recipe/Recipe'
+import { WritingAssistant } from '../../components/writingAssistant/WritingAssistant'
+import { Summary } from '../../components/summary/Summary'
+import { Translator } from '../../components/translator/Translator'
 import logo from "../../assets/chatAI-logo.png"
 
 import styles from "./styles.module.scss"

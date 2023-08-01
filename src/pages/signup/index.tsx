@@ -1,7 +1,7 @@
 import Head from "next/head"
 import Router from "next/router"
 import Link from "next/link"
-import { useState, FormEvent, ChangeEvent, useEffect } from "react"
+import React, { useState, FormEvent, ChangeEvent, useEffect } from "react"
 
 import axios from "axios"
 import { parseCookies } from "nookies"
@@ -10,7 +10,7 @@ import { BsFillArrowLeftCircleFill } from "react-icons/bs"
 
 import { baseUrl } from "../../constants/baseUrl"
 import { Loading } from "../../components/loading/Loading"
-import { Header } from "@/components/header/Header"
+import { Header } from "../../components/header/Header"
 
 import styles from "./styles.module.scss"
 

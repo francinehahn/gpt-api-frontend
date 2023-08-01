@@ -4,6 +4,7 @@ import { GrPowerCycle } from "react-icons/gr"
 
 import { DotAnimation } from "../dotAnimation/DotAnimation"
 import styles from "./styles.module.scss"
+import React from "react"
 
 interface PropsInput {
     handleSubmit: (e: FormEvent<HTMLFormElement>) => void,

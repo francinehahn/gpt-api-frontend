@@ -1,10 +1,10 @@
-import { useState, FormEvent } from "react"
+import React, { useState, FormEvent } from "react"
 
 import axios from "axios"
 import { parseCookies } from "nookies"
 
-import { useRequestData } from "@/hooks/useRequestData"
-import { baseUrl } from "@/constants/baseUrl"
+import { useRequestData } from "../../hooks/useRequestData"
+import { baseUrl } from "../../constants/baseUrl"
 import { Loading } from "../loading/Loading"
 import { GptAnswers } from "../gptAnswers/gptAnswers"
 import { ChatInput } from "../chatInput/chatInput"
