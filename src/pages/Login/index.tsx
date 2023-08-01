@@ -1,18 +1,18 @@
 import React, { useState, useEffect, FormEvent } from "react"
 import Router from "next/router"
-import Head from "next/head";
+import Head from "next/head"
 import Link from "next/link"
 
 import axios from "axios"
-import { parse, format, addSeconds, addHours } from 'date-fns';
+import {addHours } from 'date-fns'
 import { setCookie, parseCookies } from "nookies"
 import {BsEye, BsEyeSlash} from 'react-icons/bs'
 
 import {Loading} from '../../components/loading/Loading'
+import { Header } from "@/components/header/Header"
 import { baseUrl } from "../../constants/baseUrl"
-import styles from "./styles.module.scss"
-import { Header } from "@/components/header/Header";
 
+import styles from "./styles.module.scss"
 
 export default function Login() {
     useEffect(() => {

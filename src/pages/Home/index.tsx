@@ -1,20 +1,20 @@
+import { useState, ChangeEvent } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
-import { useState, ChangeEvent } from 'react'
 import Router from 'next/router'
+import { GetServerSidePropsContext } from 'next'
 
 import nookies, { destroyCookie } from "nookies"
 import { TbLogout2 } from "react-icons/tb"
 
-import logo from "../../assets/chatAI-logo.png"
-import styles from "./styles.module.scss"
 import { Animation } from '@/components/animation/Animation'
-import { GetServerSidePropsContext } from 'next'
 import { Recipe } from '@/components/recipe/Recipe'
 import { WritingAssistant } from '@/components/writingAssistant/WritingAssistant'
 import { Summary } from '@/components/summary/Summary'
 import { Translator } from '@/components/translator/Translator'
+import logo from "../../assets/chatAI-logo.png"
 
+import styles from "./styles.module.scss"
 
 export default function Home() {
     const [radioForm, setRadioForm] = useState("")
