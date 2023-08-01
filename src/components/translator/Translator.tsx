@@ -16,52 +16,61 @@ interface TextProps {
     user_id: string
 }
 
-export function WritingAssistant () {
-    const [writingRequest, setWritingRequest] = useState<string>("")
+interface TranslatorProps {
+    sourceLanguage: string,
+    targetLanguage: string
+}
+
+export function Translator (props: TranslatorProps) {
+    const [translationRequest, setTranslationRequest] = useState<string>("")
     const [isLoadingChat, setIsLoadingChat] = useState<boolean>(false)
     const [reload, setReload] = useState<boolean>(true)
-    const [data, isLoading, error] = useRequestData(`${baseUrl}get-texts`, reload)
+    const [data, isLoading, error] = useRequestData(`${baseUrl}get-translations`, reload)
     
-    const renderData = data && data.texts.map((text: TextProps) => {
+    const renderData = data && data.translations.map((translation: TextProps) => {
         return <GptAnswers 
-                    key={text.id} 
-                    question={text.question} 
-                    answer={text.answer}
-                    handleDeleteQuestion={() => handleDeleteQuestion(text.id)}
+                    key={translation.id} 
+                    question={translation.question} 
+                    answer={translation.answer}
+                    handleDeleteQuestion={() => handleDeleteQuestion(translation.id)}
                 />
     })
 
-    const handleDeleteQuestion = (textId: string) => {
+    const handleDeleteQuestion = (translationId: string) => {
         const cookies = parseCookies()
 
-        axios.delete(`${baseUrl}delete-text/${textId}`, {
+        axios.delete(`${baseUrl}delete-translation/${translationId}`, {
             headers: {
                 Authorization: `Bearer ${cookies.token}`
             }
         }).then(() => setReload(!reload)).catch(err => alert(err.response.data.error))
     }
 
-    const handleSubmitText = (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setIsLoadingChat(true)
         const cookies = parseCookies()
 
-        const body = {text: writingRequest}
+        const body = {
+            source_language: props.sourceLanguage,
+            target_language: props.targetLanguage,
+            text: translationRequest
+        }
 
-        axios.post(`${baseUrl}create-text`, body, {
+        axios.post(`${baseUrl}create-translation`, body, {
             headers: {
                 Authorization: `Bearer ${cookies.token}`
             }
         }).then(() => {
             setIsLoadingChat(false)
             setReload(!reload)
-            setWritingRequest("")
+            setTranslationRequest("")
             const textarea = document.getElementById("textArea")
             textarea!.style.height = "auto"
         }).catch(err => {
             setIsLoadingChat(false)
             setReload(!reload)
-            setWritingRequest("")
+            setTranslationRequest("")
             alert(err.response.data.error)
         })
     }
@@ -74,10 +83,11 @@ export function WritingAssistant () {
                 {!isLoading && error && <p>{error}</p>}
             </div>
             <ChatInput 
-                handleSubmit={handleSubmitText} 
-                textValue={writingRequest} 
-                setTextValue={setWritingRequest}
+                handleSubmit={handleSubmit} 
+                textValue={translationRequest} 
+                setTextValue={setTranslationRequest}
                 isLoading={isLoadingChat}
+                languagesFilledOut={props.sourceLanguage !== "" && props.targetLanguage !== ""}
             />
         </>
     )

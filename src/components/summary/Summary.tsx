@@ -19,7 +19,6 @@ interface SummaryProps {
 export function Summary () {
     const [summaryRequest, setSummaryRequest] = useState<string>("")
     const [isLoadingChat, setIsLoadingChat] = useState<boolean>(false)
-    const [isLoadingDeletion, setIsLoadingDeletion] = useState<boolean>(false)
     const [reload, setReload] = useState<boolean>(true)
     const [data, isLoading, error] = useRequestData(`${baseUrl}get-summaries`, reload)
 
@@ -29,25 +28,17 @@ export function Summary () {
                     question={summary.question} 
                     answer={summary.answer}
                     handleDeleteQuestion={() => handleDeleteQuestion(summary.id)}
-                    isLoading={isLoadingDeletion}
                 />
     })
 
     const handleDeleteQuestion = (summaryId: string) => {
-        setIsLoadingDeletion(true)
         const cookies = parseCookies()
 
         axios.delete(`${baseUrl}delete-summary/${summaryId}`, {
             headers: {
                 Authorization: `Bearer ${cookies.token}`
             }
-        }).then(() => {
-            setIsLoadingDeletion(false)
-            setReload(!reload)
-        }).catch(err => {
-            setIsLoadingDeletion(false)
-            alert(err.response.data.error)
-        })
+        }).then(() => setReload(!reload)).catch(err => alert(err.response.data.error))
     }
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {

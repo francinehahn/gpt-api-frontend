@@ -13,10 +13,13 @@ import { GetServerSidePropsContext } from 'next'
 import { Recipe } from '@/components/recipe/Recipe'
 import { WritingAssistant } from '@/components/writingAssistant/WritingAssistant'
 import { Summary } from '@/components/summary/Summary'
+import { Translator } from '@/components/translator/Translator'
 
 
 export default function Home() {
     const [radioForm, setRadioForm] = useState("")
+    const [sourceLanguage, setSourceLanguage] = useState("")
+    const [targetLanguage, setTargetLanguage] = useState("")
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
     const [showAnimation, setShowAnimation] = useState(false)
@@ -86,8 +89,20 @@ export default function Home() {
                         {
                             radioForm === "translator" && (
                             <div className={styles.languages}>
-                                <input type="text" placeholder="Língua de origem"/>
-                                <input type="text" placeholder="Língua de destino"/>
+                                <input 
+                                    className={!sourceLanguage || !targetLanguage? styles.errorLanguages : undefined}
+                                    type="text" 
+                                    placeholder="Língua de origem" 
+                                    value={sourceLanguage} 
+                                    onChange={e => setSourceLanguage(e.target.value)}
+                                />
+                                <input 
+                                    className={!sourceLanguage || !targetLanguage? styles.errorLanguages : undefined}
+                                    type="text" 
+                                    placeholder="Língua de destino" 
+                                    value={targetLanguage}
+                                    onChange={e => setTargetLanguage(e.target.value)}
+                                />
                             </div>
                             )
                         }
@@ -103,6 +118,7 @@ export default function Home() {
                         {radioForm === "writer" && <WritingAssistant/>}
                         {radioForm === "recipe" && <Recipe/>}
                         {radioForm === "summary" && <Summary/>}
+                        {radioForm === "translator" && <Translator sourceLanguage={sourceLanguage} targetLanguage={targetLanguage}/>}
                     </>
                     )}
                 </section>

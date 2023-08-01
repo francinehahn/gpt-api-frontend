@@ -6,10 +6,12 @@ interface PropsInput {
     handleSubmit: (e: FormEvent<HTMLFormElement>) => void,
     textValue: string,
     setTextValue: (x: string) => void,
-    isLoading: boolean
+    isLoading: boolean,
+    languagesFilledOut?: boolean
 }
 
 export function ChatInput(props: PropsInput) {
+    console.log(props.languagesFilledOut)
     const adjustTextAreaHeight = () => {
         const textarea = document.getElementById("textArea")
         if (textarea) {
@@ -35,9 +37,21 @@ export function ChatInput(props: PropsInput) {
                     value={props.textValue} 
                     onChange={handleTextChange}
                 />
-                <button disabled={props.textValue.trim() === ""}>
-                    {props.isLoading? <p>...</p> : <AiOutlineSend/>}
-                </button>
+                {
+                    props.languagesFilledOut === undefined && (
+                        <button disabled={props.textValue.trim() === ""}>
+                            {props.isLoading? <p>...</p> : <AiOutlineSend/>}
+                        </button>
+                    )
+                }
+
+                {
+                    props.languagesFilledOut !== undefined && (
+                        <button disabled={props.textValue.trim() === "" || !props.languagesFilledOut}>
+                            {props.isLoading? <p>...</p> : <AiOutlineSend/>}
+                        </button>
+                    )
+                }
             </form>
         </div>
     )
