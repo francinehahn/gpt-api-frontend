@@ -22,7 +22,6 @@ export function WritingAssistant () {
     const [isLoadingDeletion, setIsLoadingDeletion] = useState<boolean>(false)
     const [reload, setReload] = useState<boolean>(true)
     const [data, isLoading, error] = useRequestData(`${baseUrl}get-texts`, reload)
-    const cookies = parseCookies()
     
     const renderData = data && data.texts.map((text: TextProps) => {
         return <GptAnswers 
@@ -36,6 +35,8 @@ export function WritingAssistant () {
 
     const handleDeleteQuestion = (textId: string) => {
         setIsLoadingDeletion(true)
+        const cookies = parseCookies()
+        
         axios.delete(`${baseUrl}delete-text/${textId}`, {
             headers: {
                 Authorization: `Bearer ${cookies.token}`
@@ -50,9 +51,9 @@ export function WritingAssistant () {
     }
 
     const handleSubmitText = (e: FormEvent<HTMLFormElement>) => {
-        console.log("entreiii")
         e.preventDefault()
         setIsLoadingChat(true)
+        const cookies = parseCookies()
 
         const body = {text: answer}
 

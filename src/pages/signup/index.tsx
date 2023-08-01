@@ -97,7 +97,7 @@ export default function Signup () {
             })
             .catch(error => {
                 setIsLoading(false)
-                setAxiosError(error.response.data)
+                setAxiosError(error.response.data.error)
             })
         } else {
             setIsLoading(false)
@@ -199,7 +199,7 @@ export default function Signup () {
 
                     <p>{axiosError}</p>
 
-                    <button disabled={isButtonDisabled}>{isLoading? <Loading button={true}/> : 'Cadastrar'}</button>
+                    <button disabled={isButtonDisabled}>{isLoading? <Loading button={true} color="white"/> : 'Cadastrar'}</button>
                 </form>
 
                 <Link href="/" className={styles.icon}>

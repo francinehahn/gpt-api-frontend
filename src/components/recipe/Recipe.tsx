@@ -22,7 +22,6 @@ export function Recipe () {
     const [isLoadingDeletion, setIsLoadingDeletion] = useState<boolean>(false)
     const [reload, setReload] = useState<boolean>(true)
     const [data, isLoading, error] = useRequestData(`${baseUrl}get-recipes`, reload)
-    const cookies = parseCookies()
 
     const renderData = data && data.recipes.map((recipe: RecipeProps) => {
         return <GptAnswers 
@@ -36,6 +35,8 @@ export function Recipe () {
 
     const handleDeleteQuestion = (recipeId: string) => {
         setIsLoadingDeletion(true)
+        const cookies = parseCookies()
+
         axios.delete(`${baseUrl}delete-recipe/${recipeId}`, {
             headers: {
                 Authorization: `Bearer ${cookies.token}`
@@ -52,6 +53,7 @@ export function Recipe () {
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setIsLoadingChat(true)
+        const cookies = parseCookies()
 
         const body = {ingredients: recipeRequest}
 

@@ -34,7 +34,7 @@
     }
 }
 
-@mixin password {
+@mixin password() {
     display: flex;
     align-items: center;
     border-radius: 3px;
@@ -60,7 +60,7 @@
     }
 }
 
-@mixin chatAnswer {
+@mixin chatAnswer() {
     width: 47rem;
     padding: 2rem 0 10rem 0;
 
