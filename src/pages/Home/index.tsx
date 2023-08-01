@@ -50,7 +50,7 @@ export default function Home() {
 
         setTimeout(() => {
             setShowAnimation(false)
-        }, 4000)
+        }, 5000)
     }
 
     return (
@@ -111,7 +111,7 @@ export default function Home() {
 
                 <section>
                     {!radioForm && <Image className={styles.logo} src={logo} alt="Logo do chatAI" priority/>}
-                    {showAnimation && <Animation title={title} description={description}/>}
+                    {showAnimation && <Animation title={title} description={description} setShowAnimation={setShowAnimation}/>}
 
                     {radioForm && !showAnimation && (
                     <>

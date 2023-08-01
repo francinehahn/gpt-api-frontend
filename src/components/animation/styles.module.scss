@@ -33,4 +33,22 @@
             width: 2.2rem;
         }
     }
+    button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .5rem;
+        width: 6rem;
+        background-color: transparent;
+        border: 1px solid grey;
+        border-radius: 3px;
+        margin-top: .8rem;
+        @include textColors("black");
+
+        svg {
+            width: 1.2rem;
+            height: 1.2rem;
+            @include textColors("darkgrey");
+        }
+    }
 }

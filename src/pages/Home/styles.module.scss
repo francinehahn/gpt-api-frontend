@@ -8,11 +8,11 @@
 
 .container {
   @include bgColors("lightgrey");
-  width: 97vw;
-  height: 94vh;
+  width: 98vw;
+  height: 95vh;
   position: absolute;
-  top: 3vh;
-  left: 1.5vw;
+  top: 2.5vh;
+  left: 1vw;
   display: flex;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.249);
   overflow: hidden;
@@ -112,10 +112,10 @@
       display: block;
       margin: 40vh auto;
     }
-  }
 
-  section::-webkit-scrollbar {
-    width: .75rem;
+    &::-webkit-scrollbar {
+      width: .75rem;
+    }
   }
 }
 

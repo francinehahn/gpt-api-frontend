@@ -14,7 +14,7 @@ import { baseUrl } from "../../constants/baseUrl"
 
 import styles from "./styles.module.scss"
 
-export default function Login() {
+export default function Login({x}: any) {
     useEffect(() => {
         const cookies = parseCookies()
         if (cookies.token) {

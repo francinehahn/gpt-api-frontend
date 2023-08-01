@@ -32,9 +32,11 @@ export function ChatInput(props: PropsInput) {
     }
 
     const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
-        if (e.key === "Enter" && !e.shiftKey) {
+        if (e.key === "Enter" && !e.shiftKey && props.textValue) {
             e.preventDefault()
             formRef.current?.dispatchEvent(new Event("submit", { bubbles: true }))
+        } else {
+            return
         }
     }
 
@@ -51,7 +53,7 @@ export function ChatInput(props: PropsInput) {
                         id="textArea"
                         className={styles["resizable-textarea"]}
                         rows={1}
-                        placeholder="Digite aqui" 
+                        placeholder="Digite aqui..." 
                         value={props.textValue} 
                         onChange={handleTextChange}
                         onKeyDown={handleKeyDown}
