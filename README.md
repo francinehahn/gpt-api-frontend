@@ -36,11 +36,11 @@ The back-end consumes data from the openAI api and the layout is responsive to a
 ![Home2-desktop](./src/assets/print-home2-desktop.png)
 ![Home3-desktop](./src/assets/print-home3-desktop.png)
 <br>
-<img src="./src/assets/print-login-mobile.png" width="35%"/>
-<img src="./src/assets/print-signup-mobile.png" width="35%"/>
-<img src="./src/assets/print-home-mobile.png" width="35%"/>
-<img src="./src/assets/print-home2-mobile.png" width="35%"/>
-<img src="./src/assets/print-home3-mobile.png" width="35%"/>
+<img src="./src/assets/print-login-mobile.png" width="30%"/>
+<img src="./src/assets/print-signup-mobile.png" width="30%"/>
+<img src="./src/assets/print-home-mobile.png" width="30%"/>
+<img src="./src/assets/print-home2-mobile.png" width="30%"/>
+<img src="./src/assets/print-home3-mobile.png" width="30%"/>
 
 ## 🛰 Running the project
 <pre>
