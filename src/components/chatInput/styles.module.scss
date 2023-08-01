@@ -27,7 +27,8 @@
         gap: .5rem;
         @include bgColors("white");
         @include textColors("black");
-        width: 7.5rem;
+        width: 7rem;
+        min-height: 2.5rem;
         box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.121);
         border-radius: .4rem;
         border: 1px solid rgb(201, 201, 201);
@@ -40,7 +41,7 @@
         }
       }
 
-      div {
+      .div {
         display: flex;
         @include bgColors("white");
         width: 52rem;

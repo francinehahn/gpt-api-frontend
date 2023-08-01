@@ -2,6 +2,7 @@ import { FormEvent, KeyboardEvent, useRef } from "react"
 import { AiOutlineSend } from "react-icons/ai"
 import { GrPowerCycle } from "react-icons/gr"
 import styles from "./styles.module.scss"
+import { DotAnimation } from "../dotAnimation/DotAnimation"
 
 interface PropsInput {
     handleSubmit: (e: FormEvent<HTMLFormElement>) => void,
@@ -42,10 +43,10 @@ export function ChatInput(props: PropsInput) {
             <form ref={formRef} onSubmit={props.handleSubmit}>
                 <button type="button" className={styles.regenerate} onClick={props.handleRegenerate}>
                     {!props.isLoadingRegenerate && <GrPowerCycle/>}
-                    {props.isLoadingRegenerate? "..." : "Reenviar"}
+                    {props.isLoadingRegenerate? <DotAnimation/> : "Reenviar"}
                 </button>
                 
-                <div>
+                <div className={styles.div}>
                     <textarea 
                         id="textArea"
                         className={styles["resizable-textarea"]}
@@ -58,7 +59,7 @@ export function ChatInput(props: PropsInput) {
                     {
                         props.languagesFilledOut === undefined && (
                             <button disabled={props.textValue.trim() === ""}>
-                                {props.isLoadingChat? <p>...</p> : <AiOutlineSend/>}
+                                {props.isLoadingChat? <DotAnimation/> : <AiOutlineSend/>}
                             </button>
                         )
                     }
@@ -66,7 +67,7 @@ export function ChatInput(props: PropsInput) {
                     {
                         props.languagesFilledOut !== undefined && (
                             <button disabled={props.textValue.trim() === "" || !props.languagesFilledOut}>
-                                {props.isLoadingChat? <p>...</p> : <AiOutlineSend/>}
+                                {props.isLoadingChat? <DotAnimation/> : <AiOutlineSend/>}
                             </button>
                         )
                     }
