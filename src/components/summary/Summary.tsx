@@ -65,6 +65,8 @@ export function Summary () {
             setIsLoadingChat(false)
             setReload(!reload)
             setSummaryRequest("")
+            const textarea = document.getElementById("textArea")
+            textarea!.style.height = "auto"
         }).catch(err => {
             setIsLoadingChat(false)
             setSummaryRequest("")

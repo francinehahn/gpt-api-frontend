@@ -65,6 +65,8 @@ export function Recipe () {
             setIsLoadingChat(false)
             setReload(!reload)
             setRecipeRequest("")
+            const textarea = document.getElementById("textArea")
+            textarea!.style.height = "auto"
         }).catch(err => {
             setIsLoadingChat(false)
             setRecipeRequest("")

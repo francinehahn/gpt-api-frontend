@@ -17,7 +17,7 @@ interface TextProps {
 }
 
 export function WritingAssistant () {
-    const [answer, setAnswer] = useState<string>("")
+    const [writingRequest, setWritingRequest] = useState<string>("")
     const [isLoadingChat, setIsLoadingChat] = useState<boolean>(false)
     const [isLoadingDeletion, setIsLoadingDeletion] = useState<boolean>(false)
     const [reload, setReload] = useState<boolean>(true)
@@ -36,7 +36,7 @@ export function WritingAssistant () {
     const handleDeleteQuestion = (textId: string) => {
         setIsLoadingDeletion(true)
         const cookies = parseCookies()
-        
+
         axios.delete(`${baseUrl}delete-text/${textId}`, {
             headers: {
                 Authorization: `Bearer ${cookies.token}`
@@ -55,7 +55,7 @@ export function WritingAssistant () {
         setIsLoadingChat(true)
         const cookies = parseCookies()
 
-        const body = {text: answer}
+        const body = {text: writingRequest}
 
         axios.post(`${baseUrl}create-text`, body, {
             headers: {
@@ -64,11 +64,13 @@ export function WritingAssistant () {
         }).then(() => {
             setIsLoadingChat(false)
             setReload(!reload)
-            setAnswer("")
+            setWritingRequest("")
+            const textarea = document.getElementById("textArea")
+            textarea!.style.height = "auto"
         }).catch(err => {
             setIsLoadingChat(false)
             setReload(!reload)
-            setAnswer("")
+            setWritingRequest("")
             alert(err.response.data.error)
         })
     }
@@ -82,8 +84,8 @@ export function WritingAssistant () {
             </div>
             <ChatInput 
                 handleSubmit={handleSubmitText} 
-                textValue={answer} 
-                setTextValue={setAnswer}
+                textValue={writingRequest} 
+                setTextValue={setWritingRequest}
                 isLoading={isLoadingChat}
             />
         </>
