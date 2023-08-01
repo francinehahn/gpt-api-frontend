@@ -8,6 +8,7 @@
     .question {
         display: flex;
         justify-content: space-between;
+        gap: 1.5rem;
         padding: 1rem;
         @include bgColors("white");
         width: 100%;
@@ -30,8 +31,8 @@
             }
         }
         svg {
-            height: 1.5rem;
-            width: 1.5rem;
+            min-height: 1.5rem;
+            min-width: 1.5rem;
             @include textColors("lightgrey");
             cursor: pointer;
             &:hover {

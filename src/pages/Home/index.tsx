@@ -12,6 +12,7 @@ import { Animation } from '@/components/animation/Animation'
 import { GetServerSidePropsContext } from 'next'
 import { Recipe } from '@/components/recipe/Recipe'
 import { WritingAssistant } from '@/components/writingAssistant/WritingAssistant'
+import { Summary } from '@/components/summary/Summary'
 
 
 export default function Home() {
@@ -101,6 +102,7 @@ export default function Home() {
                     <>
                         {radioForm === "writer" && <WritingAssistant/>}
                         {radioForm === "recipe" && <Recipe/>}
+                        {radioForm === "summary" && <Summary/>}
                     </>
                     )}
                 </section>
