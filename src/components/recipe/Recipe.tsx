@@ -6,6 +6,7 @@ import { parseCookies } from "nookies"
 import { useRequestData } from "../../hooks/useRequestData"
 import { baseUrl } from "../../constants/baseUrl"
 import { Loading } from "../loading/Loading"
+
 import { GptAnswers } from "../gptAnswers/gptAnswers"
 import { ChatInput } from "../chatInput/chatInput"
 
