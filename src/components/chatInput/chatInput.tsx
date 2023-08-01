@@ -1,4 +1,4 @@
-import { FormEvent } from "react"
+import { FormEvent, KeyboardEvent, useRef } from "react"
 import { AiOutlineSend } from "react-icons/ai"
 import styles from "./styles.module.scss"
 
@@ -11,7 +11,8 @@ interface PropsInput {
 }
 
 export function ChatInput(props: PropsInput) {
-    console.log(props.languagesFilledOut)
+    const formRef = useRef<HTMLFormElement>(null)
+
     const adjustTextAreaHeight = () => {
         const textarea = document.getElementById("textArea")
         if (textarea) {
@@ -26,9 +27,16 @@ export function ChatInput(props: PropsInput) {
         adjustTextAreaHeight()
     }
 
+    const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+        if (e.key === "Enter" && !e.shiftKey) {
+            e.preventDefault()
+            formRef.current?.dispatchEvent(new Event("submit", { bubbles: true }))
+        }
+    }
+
     return (
         <div className={styles.chatInput}>
-            <form onSubmit={props.handleSubmit}>
+            <form ref={formRef} onSubmit={props.handleSubmit}>
                 <textarea 
                     id="textArea"
                     className={styles["resizable-textarea"]}
@@ -36,6 +44,7 @@ export function ChatInput(props: PropsInput) {
                     placeholder="Digite aqui" 
                     value={props.textValue} 
                     onChange={handleTextChange}
+                    onKeyDown={handleKeyDown}
                 />
                 {
                     props.languagesFilledOut === undefined && (
