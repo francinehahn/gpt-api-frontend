@@ -22,23 +22,23 @@ export default function Signup () {
         }
     }, [])
 
-    const [name, setName] = useState("")
-    const [email, setEmail] = useState("")
-    const [phone, setPhone] = useState("")
-    const [password, setPassword] = useState("")
-    const [repeatPassword, setRepeatPassword] = useState("")
+    const [name, setName] = useState<string>("")
+    const [email, setEmail] = useState<string>("")
+    const [phone, setPhone] = useState<string>("")
+    const [password, setPassword] = useState<string>("")
+    const [repeatPassword, setRepeatPassword] = useState<string>("")
 
-    const [nameError, setNameError] = useState("")
-    const [phoneError, setPhoneError] = useState("")
-    const [emailError, setEmailError] = useState("")
-    const [passwordError, setPasswordError] = useState("")
-    const [repeatPasswordError, setRepeatPasswordError] = useState("")
-    const [axiosError, setAxiosError] = useState("")
+    const [nameError, setNameError] = useState<string>("")
+    const [phoneError, setPhoneError] = useState<string>("")
+    const [emailError, setEmailError] = useState<string>("")
+    const [passwordError, setPasswordError] = useState<string>("")
+    const [repeatPasswordError, setRepeatPasswordError] = useState<string>("")
+    const [axiosError, setAxiosError] = useState<string>("")
 
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState<boolean>(false)
 
-    const [inputTypePass, setInputTypePass] = useState("password")
-    const [inputTypeRepeatPass, setInputTypeRepeatPass] = useState("password")
+    const [inputTypePass, setInputTypePass] = useState<string>("password")
+    const [inputTypeRepeatPass, setInputTypeRepeatPass] = useState<string>("password")
 
     const isButtonDisabled = name === "" || email === "" || phone === "" || password === "" || repeatPassword === ""
 

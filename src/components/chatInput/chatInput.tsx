@@ -1,8 +1,9 @@
 import { FormEvent, KeyboardEvent, useRef } from "react"
 import { AiOutlineSend } from "react-icons/ai"
 import { GrPowerCycle } from "react-icons/gr"
-import styles from "./styles.module.scss"
+
 import { DotAnimation } from "../dotAnimation/DotAnimation"
+import styles from "./styles.module.scss"
 
 interface PropsInput {
     handleSubmit: (e: FormEvent<HTMLFormElement>) => void,

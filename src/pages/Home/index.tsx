@@ -17,12 +17,12 @@ import logo from "../../assets/chatAI-logo.png"
 import styles from "./styles.module.scss"
 
 export default function Home() {
-    const [radioForm, setRadioForm] = useState("")
-    const [sourceLanguage, setSourceLanguage] = useState("Português")
-    const [targetLanguage, setTargetLanguage] = useState("Inglês")
-    const [title, setTitle] = useState("")
-    const [description, setDescription] = useState("")
-    const [showAnimation, setShowAnimation] = useState(false)
+    const [radioForm, setRadioForm] = useState<string>("")
+    const [sourceLanguage, setSourceLanguage] = useState<string>("Português")
+    const [targetLanguage, setTargetLanguage] = useState<string>("Inglês")
+    const [title, setTitle] = useState<string>("")
+    const [description, setDescription] = useState<string>("")
+    const [showAnimation, setShowAnimation] = useState<boolean>(false)
     
     const handleLogout = () => {
         destroyCookie(null, "token")

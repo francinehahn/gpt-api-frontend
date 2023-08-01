@@ -1,12 +1,15 @@
 import { useState, FormEvent } from "react"
+
+import axios from "axios"
+import { parseCookies } from "nookies"
+
 import { useRequestData } from "@/hooks/useRequestData"
 import { baseUrl } from "@/constants/baseUrl"
 import { Loading } from "../loading/Loading"
 import { GptAnswers } from "../gptAnswers/gptAnswers"
-import styles from "./styles.module.scss"
 import { ChatInput } from "../chatInput/chatInput"
-import axios from "axios"
-import { parseCookies } from "nookies"
+
+import styles from "./styles.module.scss"
 
 interface RecipeProps {
     answer: string,

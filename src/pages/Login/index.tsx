@@ -14,7 +14,7 @@ import { baseUrl } from "../../constants/baseUrl"
 
 import styles from "./styles.module.scss"
 
-export default function Login({x}: any) {
+export default function Login() {
     useEffect(() => {
         const cookies = parseCookies()
         if (cookies.token) {
@@ -22,14 +22,14 @@ export default function Login({x}: any) {
         }
     }, [])
 
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    const [email, setEmail] = useState<string>("")
+    const [password, setPassword] = useState<string>("")
 
-    const [isLoading, setIsLoading] = useState(false)
-    const [axiosError, setAxiosError] = useState("")
-    const [emailError, setEmailError] = useState("")
-    const [passwordError, setPasswordError] = useState("")
-    const [inputType, setInputType] = useState("password")
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [axiosError, setAxiosError] = useState<string>("")
+    const [emailError, setEmailError] = useState<string>("")
+    const [passwordError, setPasswordError] = useState<string>("")
+    const [inputType, setInputType] = useState<string>("password")
 
     const isButtonDisabled = email === "" || password === ""
 
