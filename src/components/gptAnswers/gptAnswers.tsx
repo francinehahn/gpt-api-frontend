@@ -3,11 +3,13 @@ import Image from "next/image"
 import {MdDeleteOutline} from "react-icons/md"
 import logo from "../../../public/favicon.png"
 import styles from "./styles.module.scss"
+import { DotAnimation } from "../dotAnimation/DotAnimation"
 
 interface PropsAnswers {
     question: string,
     answer: string,
-    handleDeleteQuestion: (id: string) => void
+    handleDeleteQuestion: (id: string) => void,
+    isLoading: boolean
 }
 
 export function GptAnswers(props: PropsAnswers) {
@@ -18,7 +20,7 @@ export function GptAnswers(props: PropsAnswers) {
                     <p>Eu</p>
                     <p>{props.question}</p>
                 </span>
-                <MdDeleteOutline onClick={() => props.handleDeleteQuestion}/>
+                {props.isLoading? <DotAnimation/> : <MdDeleteOutline onClick={props.handleDeleteQuestion}/>}
             </span>
             <span className={styles.answer}>
                 <Image src={logo} alt="Logo do chatAI"/>

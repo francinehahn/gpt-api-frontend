@@ -22,6 +22,7 @@ interface TextProps {
 export function WritingAssistant () {
     const [writingRequest, setWritingRequest] = useState<string>("")
     const [isLoadingChat, setIsLoadingChat] = useState<boolean>(false)
+    const [isLoadingDeletion, setIsLoadingDeletion] = useState<boolean>(false)
     const [isLoadingRegenerate, setIsLoadingRegenerate] = useState<boolean>(false)
     const [reload, setReload] = useState<boolean>(true)
     const [data, isLoading, error] = useRequestData(`${baseUrl}get-texts`, reload)
@@ -32,17 +33,25 @@ export function WritingAssistant () {
                     question={text.question} 
                     answer={text.answer}
                     handleDeleteQuestion={() => handleDeleteQuestion(text.id)}
+                    isLoading={isLoadingDeletion}
                 />
     })
 
     const handleDeleteQuestion = (textId: string) => {
+        setIsLoadingDeletion(true)
         const cookies = JSON.parse(parseCookies().token)
 
         axios.delete(`${baseUrl}delete-text/${textId}`, {
             headers: {
                 Authorization: `Bearer ${cookies.token}`
             }
-        }).then(() => setReload(!reload)).catch(err => alert(err.response.data.error))
+        }).then(() => {
+            setReload(!reload)
+            setIsLoadingDeletion(false)
+        }).catch(err => {
+            setIsLoadingDeletion(false)
+            alert(err.response.data.error)
+        })
     }
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {

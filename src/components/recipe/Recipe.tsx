@@ -23,6 +23,7 @@ interface RecipeProps {
 export function Recipe () {
     const [recipeRequest, setRecipeRequest] = useState<string>("")
     const [isLoadingChat, setIsLoadingChat] = useState<boolean>(false)
+    const [isLoadingDeletion, setIsLoadingDeletion] = useState<boolean>(false)
     const [isLoadingRegenerate, setIsLoadingRegenerate] = useState<boolean>(false)
     const [reload, setReload] = useState<boolean>(true)
     const [data, isLoading, error] = useRequestData(`${baseUrl}get-recipes`, reload)
@@ -33,17 +34,25 @@ export function Recipe () {
                     question={recipe.question} 
                     answer={recipe.answer}
                     handleDeleteQuestion={() => handleDeleteQuestion(recipe.id)}
+                    isLoading={isLoadingDeletion}
                 />
     })
 
     const handleDeleteQuestion = (recipeId: string) => {
+        setIsLoadingDeletion(true)
         const cookies = JSON.parse(parseCookies().token)
 
         axios.delete(`${baseUrl}delete-recipe/${recipeId}`, {
             headers: {
                 Authorization: `Bearer ${cookies.token}`
             }
-        }).then(() => setReload(!reload)).catch(err => alert(err.response.data.error))
+        }).then(() => {
+            setReload(!reload)
+            setIsLoadingDeletion(false)
+        }).catch(err => {
+            setIsLoadingDeletion(false)
+            alert(err.response.data.error)
+        })
     }
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {

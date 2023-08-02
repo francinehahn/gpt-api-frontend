@@ -27,6 +27,7 @@ interface TranslatorProps {
 export function Translator (props: TranslatorProps) {
     const [translationRequest, setTranslationRequest] = useState<string>("")
     const [isLoadingChat, setIsLoadingChat] = useState<boolean>(false)
+    const [isLoadingDeletion, setIsLoadingDeletion] = useState<boolean>(false)
     const [isLoadingRegenerate, setIsLoadingRegenerate] = useState<boolean>(false)
     const [reload, setReload] = useState<boolean>(true)
     const [data, isLoading, error] = useRequestData(`${baseUrl}get-translations`, reload)
@@ -37,17 +38,25 @@ export function Translator (props: TranslatorProps) {
                     question={translation.question} 
                     answer={translation.answer}
                     handleDeleteQuestion={() => handleDeleteQuestion(translation.id)}
+                    isLoading={isLoadingDeletion}
                 />
     })
 
     const handleDeleteQuestion = (translationId: string) => {
+        setIsLoadingDeletion(true)
         const cookies = JSON.parse(parseCookies().token)
 
         axios.delete(`${baseUrl}delete-translation/${translationId}`, {
             headers: {
                 Authorization: `Bearer ${cookies.token}`
             }
-        }).then(() => setReload(!reload)).catch(err => alert(err.response.data.error))
+        }).then(() => {
+            setReload(!reload)
+            setIsLoadingDeletion(false)
+        }).catch(err => {
+            setIsLoadingDeletion(false)
+            alert(err.response.data.error)
+        })
     }
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
