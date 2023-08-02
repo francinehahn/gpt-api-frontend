@@ -36,7 +36,7 @@ export function Summary () {
     })
 
     const handleDeleteQuestion = (summaryId: string) => {
-        const cookies = parseCookies()
+        const cookies = JSON.parse(parseCookies().token)
 
         axios.delete(`${baseUrl}delete-summary/${summaryId}`, {
             headers: {
@@ -48,7 +48,7 @@ export function Summary () {
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setIsLoadingChat(true)
-        const cookies = parseCookies()
+        const cookies = JSON.parse(parseCookies().token)
 
         const body = {text: summaryRequest}
 

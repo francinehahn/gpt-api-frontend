@@ -41,7 +41,7 @@ export function Translator (props: TranslatorProps) {
     })
 
     const handleDeleteQuestion = (translationId: string) => {
-        const cookies = parseCookies()
+        const cookies = JSON.parse(parseCookies().token)
 
         axios.delete(`${baseUrl}delete-translation/${translationId}`, {
             headers: {
@@ -53,7 +53,7 @@ export function Translator (props: TranslatorProps) {
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setIsLoadingChat(true)
-        const cookies = parseCookies()
+        const cookies = JSON.parse(parseCookies().token)
 
         const body = {
             source_language: props.sourceLanguage,

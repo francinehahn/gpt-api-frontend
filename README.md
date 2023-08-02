@@ -6,7 +6,7 @@ This is a chat that consumes data from an API developed by me. The link of the g
 The back-end consumes data from the openAI api and the layout is responsive to all screen sizes.
 
 ## 🌐 Deploy
-
+https://gpt-api-frontend.vercel.app/
 
 ## 👩‍💻 Technologies
 - Typescript

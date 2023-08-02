@@ -36,7 +36,7 @@ export function WritingAssistant () {
     })
 
     const handleDeleteQuestion = (textId: string) => {
-        const cookies = parseCookies()
+        const cookies = JSON.parse(parseCookies().token)
 
         axios.delete(`${baseUrl}delete-text/${textId}`, {
             headers: {
@@ -45,13 +45,13 @@ export function WritingAssistant () {
         }).then(() => setReload(!reload)).catch(err => alert(err.response.data.error))
     }
 
-    const handleSubmitText = (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setIsLoadingChat(true)
-        const cookies = parseCookies()
+        const cookies = JSON.parse(parseCookies().token)
 
         const body = {text: writingRequest}
-
+        
         axios.post(`${baseUrl}create-text`, body, {
             headers: {
                 Authorization: `Bearer ${cookies.token}`
@@ -73,7 +73,7 @@ export function WritingAssistant () {
     const handleRegenerate = () => {
         setIsLoadingRegenerate(true)
         const cookies = JSON.parse(parseCookies().token)
-
+        
         axios.patch(`${baseUrl}regenerate-text`, null, {
             headers: {
                 Authorization: `Bearer ${cookies.token}`
@@ -95,7 +95,7 @@ export function WritingAssistant () {
                 {!isLoading && error && <p>{error}</p>}
             </div>
             <ChatInput 
-                handleSubmit={handleSubmitText} 
+                handleSubmit={handleSubmit} 
                 handleRegenerate={handleRegenerate}
                 textValue={writingRequest} 
                 setTextValue={setWritingRequest}
