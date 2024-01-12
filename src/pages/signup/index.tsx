@@ -9,7 +9,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import { BsFillArrowLeftCircleFill } from "react-icons/bs"
 
 import { baseUrl } from "../../constants/baseUrl"
-import { Loading } from "../../components/loading/Loading"
+import { Loading } from "../../components/loading/loading"
 import { Header } from "../../components/header/Header"
 
 import styles from "./styles.module.scss"
