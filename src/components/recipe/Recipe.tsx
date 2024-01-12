@@ -8,7 +8,7 @@ import { baseUrl } from "../../constants/baseUrl"
 
 import { GptAnswers } from "../gptAnswers/gptAnswers"
 import { ChatInput } from "../chatInput/chatInput"
-import { Loading } from "../loading/Loading"
+import {Loading} from '@/components/loading/loading'
 
 import styles from "./styles.module.scss"
 

@@ -8,7 +8,7 @@ import {addHours } from 'date-fns'
 import { setCookie, parseCookies } from "nookies"
 import {BsEye, BsEyeSlash} from 'react-icons/bs'
 
-import {Loading} from '../../components/loading/Loading'
+import {Loading} from '@/components/loading/loading'
 import { Header } from "@/components/header/Header"
 import { baseUrl } from "../../constants/baseUrl"
 
