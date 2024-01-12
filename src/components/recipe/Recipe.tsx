@@ -75,7 +75,7 @@ export function Recipe () {
         }).catch(err => {
             setIsLoadingChat(false)
             setRecipeRequest("")
-            alert(err.response.data.error)
+            alert("Créditos da API da OpenAI excedidos. Tente novamente mais tarde.")
         })
     }
 

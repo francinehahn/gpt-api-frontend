@@ -51,8 +51,7 @@ export default function Login() {
         if (email !== "" && password.length >= 8) {
             const body = {email, password}
 
-            axios.post(`${baseUrl}users/login`, body)
-            .then(response => {
+            axios.post(`${baseUrl}users/login`, body).then(response => {
                 setIsLoading(false)
                 setCookie(null, 'token', JSON.stringify({ token: response.data.token, expDate: addHours(new Date(), 24) }), {
                     expires: addHours(new Date(), 24),
@@ -60,8 +59,7 @@ export default function Login() {
                   })
             
                 Router.push("/home")
-            })
-            .catch(error => {
+            }).catch(error => {
                 setIsLoading(false)
                 setAxiosError("E-mail ou senha incorretos")
             })

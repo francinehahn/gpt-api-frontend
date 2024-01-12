@@ -74,7 +74,7 @@ export function Summary () {
         }).catch(err => {
             setIsLoadingChat(false)
             setSummaryRequest("")
-            alert(err.response.data.error)
+            alert("Créditos da API da OpenAI excedidos. Tente novamente mais tarde.")
         })
     }
 

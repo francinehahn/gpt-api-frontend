@@ -55,7 +55,7 @@ export function Translator (props: TranslatorProps) {
             setIsLoadingDeletion(false)
         }).catch(err => {
             setIsLoadingDeletion(false)
-            alert(err.response.data.error)
+            alert("Créditos da API da OpenAI excedidos. Tente novamente mais tarde.")
         })
     }
 
